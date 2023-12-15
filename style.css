@@ -1,10 +1,19 @@
+/* 
+Theme Name: Personal Theme
+Author: koechian
+Author URI: www.hopecompassioncenter.org
+Version: 1.0
+Description: Theme fo Compassion Hope Wordpress
+
+*/
+
 @font-face {
   font-family: Inter;
-  src: url(Fonts/Inter.ttf);
+  src: url(assets/Fonts/Inter.ttf);
 }
 @font-face {
   font-family: Delius;
-  src: url(Fonts/Delius-Regular.ttf);
+  src: url(assets/Fonts/Delius-Regular.ttf);
 }
 :root {
   --white: #edf1dd;
@@ -13,6 +22,7 @@
   --green: #003e1f;
   -more-white: #e0e0e0;
 }
+
 html {
   margin: 0;
   padding: 0;
