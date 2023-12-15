@@ -1,0 +1,105 @@
+@font-face {
+  font-family: Inter;
+  src: url(Fonts/Inter.ttf);
+}
+@font-face {
+  font-family: Delius;
+  src: url(Fonts/Delius-Regular.ttf);
+}
+:root {
+  --white: #edf1dd;
+  --brown: #251600;
+  --orange: #ff6803;
+  --green: #003e1f;
+  -more-white: #e0e0e0;
+}
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+  background-color: var(--white);
+  font: inherit;
+  vertical-align: baseline;
+  overflow-x: hidden;
+}
+* {
+  font-family: Inter;
+}
+a {
+  color: var(--brown);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--orange);
+  transition: ease-in-out 200ms;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  align-items: center;
+  width: 100%;
+}
+.menu {
+  width: 60%;
+  display: flex;
+  align-items: right;
+  justify-content: flex-end;
+}
+.menu ul {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.menu ul li {
+  list-style: none;
+}
+.menu ul li a {
+  text-decoration: none;
+}
+.menu button {
+  margin: 0 20px;
+  padding: 10px 30px;
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  transition: ease-in-out 300ms;
+}
+.menu button:hover {
+  background-color: var(--brown);
+  scale: 1.03;
+  cursor: pointer;
+}
+section {
+  height: 100vh;
+  width: 100vw;
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+}
+.twins {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 50px 30px;
+}
+.twins div {
+  padding: 10px;
+}
+.twins h1 {
+  font-size: 4em;
+  font-weight: 500;
+}
+.twins p {
+  font-size: 1.5em;
+  color: #251600d1;
+}
+.image-container img {
+  border: 10px #25160060 solid;
+  width: 80%;
+  border-radius: 7px;
+}
