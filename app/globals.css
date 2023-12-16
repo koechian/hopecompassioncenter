@@ -9,11 +9,6 @@
   --secondary-green: #003e1f;
 }
 
-/* we can use ems to scale relative to this */
-* {
-  font-size: 10px;
-}
-
 /* reset */
 html {
   margin: 0;
