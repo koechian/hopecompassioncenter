@@ -3,7 +3,7 @@ import { Delius } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const delius = Delius();
+const delius = Delius({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   title: "Hope Compassion Center",
