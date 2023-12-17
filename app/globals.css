@@ -17,5 +17,5 @@ html {
 }
 section {
   width: 100vw;
-  min-height: 90vh;
+  /* min-height: 90vh; */
 }

@@ -42,8 +42,8 @@ const Header = () => {
       <div className="flex items-right justify-end w-3/4">
         <ul className="flex justify-between flex-row mr-5 p-2 w-1/2">
           <li className="list-none">
-            <Link className={styles.link} href="#">
-              {" "}
+            <Link className={styles.link} href="/">
+              {""}
               Home
             </Link>
           </li>

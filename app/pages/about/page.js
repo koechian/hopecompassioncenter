@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className="bg-orange-950 flex flex-col justify-center items-center sm:py-0 md:py-20">
+    <div className="bg-amber-950 flex flex-col justify-center items-center sm:py-0 md:py-20">
       <section
         style={{
           background: "url('/hcc_banner.png')",
@@ -32,7 +32,7 @@ function About() {
           <div className="flex flex-col-reverse md:flex-row gap-4 sm:gap-20">
             <img
               className="w-full sm:w-5/12 rounded-md h-72 object-cover sm:h-96"
-              src="story.png"
+              src="/story.png"
               alt=""
             />
             <p className="text-sm sm:text-lg text-justify font-light">
@@ -67,7 +67,7 @@ function About() {
           <div className="flex flex-col-reverse sm:flex-row-reverse gap-20 sm:py-10">
             <img
               className="w-full sm:w-6/12 rounded-md h-52 sm:h-3/4 object-cover"
-              src="fire.png"
+              src="/fire.png"
               alt=""
             />
             <div className="flex flex-col gap-10 w-full sm:w-6/12 items-start">
@@ -84,7 +84,7 @@ function About() {
               </p>
               <img
                 className="w-full object-cover rounded-md h-52 sm:h-96 "
-                src="vaccine.png"
+                src="/vaccine.png"
                 alt=""
               />
             </div>
@@ -106,13 +106,13 @@ function About() {
               </p>
               <img
                 className="w-full object-cover rounded-md h-52 sm:h-96"
-                src="construction.png"
+                src="/construction.png"
                 alt=""
               />
             </div>
             <img
               className="w-full sm:w-1/2 rounded-md h-52 sm:h-96 object-cover"
-              src="vandyke.png"
+              src="/vandyke.png"
               alt=""
             />
           </div>
@@ -141,14 +141,14 @@ function About() {
             </p>
             <img
               className="w-full sm:w-5/12 rounded-md h-72"
-              src="football.png"
+              src="/football.png"
               alt=""
             />
           </div>
           <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-20">
             <img
               className="w-full sm:w-5/12 rounded-md h-72"
-              src="farming.png"
+              src="/farming.png"
               alt=""
             />
             <p className="text-sm sm:text-lg text-justify font-light">
@@ -190,7 +190,7 @@ function About() {
             <div className="flex flex-col w-full sm:w-1/2 items-start justify-center">
               <img
                 className="w-full sm:w-11/12 rounded-md h-52 sm:h-96 object-cover"
-                src="childcare.png"
+                src="/childcare.png"
                 alt=""
               />
               <small>The Childcare Center, finally complete</small>
@@ -199,7 +199,7 @@ function About() {
             <div className="flex flex-col w-full sm:w-1/2 items-start justify-center">
               <img
                 className="w-full sm:w-11/12 rounded-md h-52 sm:h-96 object-cover"
-                src="partners.png"
+                src="/partners.png"
                 alt=""
               />
               <small>Some of our partners coming to visit</small>

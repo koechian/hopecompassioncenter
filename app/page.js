@@ -6,7 +6,6 @@ import Footer from "./components/Footer/footer";
 export default function Landing() {
   return (
     <div className="bg-cream">
-      <Header />
       <section className="flex flex-col">
         <div
           className="w-full"
