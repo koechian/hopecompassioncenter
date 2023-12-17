@@ -14,7 +14,6 @@ const Footer = () => {
           <Image src="/footer-banner.svg" width={300} height={150} />
         </div>
         <div>
-          <span>Navigation</span>
           <ul>
             <li>
               <Link className={styles.link} href="">
