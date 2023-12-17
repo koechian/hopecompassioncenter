@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const Header = () => {
   return (
-    <nav className="sticky top-1 flex justify-around align-center w-100 background-cream outline-dotted outline-red outline-1 p-3 text-lg">
+    <nav className="sticky z-30 top-0 bg-white bg-opacity-50 flex justify-around align-center w-100 background-cream hover:bg-white outline-dotted outline-red outline-1 p-3 py-6 text-lg">
       <div className={inter.className}>
         <div className="logo-image">
           <Image

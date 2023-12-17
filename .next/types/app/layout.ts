@@ -1,4 +1,4 @@
-// File: /Users/koechian/Documents/hopecompassioncenter/app/layout.js
+// File: /home/nelsonn/react-apps/hopecenter/app/layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
