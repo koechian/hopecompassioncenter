@@ -1,14 +1,34 @@
+"use client";
+
 import react from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Inter } from "next/font/google";
-// import styles from "./header.module.css";
+import styles from "./header.module.css";
+
+import { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+      const navState = scrollPos > 0;
+
+      setIsScrolled(navState);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+  });
   return (
-    <nav className="sticky z-30 top-0 bg-white bg-opacity-50 flex justify-around align-center w-100 background-cream hover:bg-white outline-dotted outline-red outline-1 p-3 py-6 text-lg">
+    <nav
+      className={[`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`].join(
+        " "
+      )}
+    >
       <div className={inter.className}>
         <div className="logo-image">
           <Image
@@ -22,22 +42,31 @@ const Header = () => {
       <div className="flex items-right justify-end w-3/4">
         <ul className="flex justify-between flex-row mr-5 p-2 w-1/2">
           <li className="list-none">
-            <Link className="no-underline" href="#">
+            <Link className={styles.link} href="#">
               {" "}
               Home
             </Link>
           </li>
           <li>
-            <Link href="/about"> About</Link>
+            <Link className={styles.link} href="/about">
+              {" "}
+              About
+            </Link>
           </li>
           <li>
-            <Link href="/projects"> Projects</Link>
+            <Link className={styles.link} href="/projects">
+              {" "}
+              Projects
+            </Link>
           </li>
           <li>
-            <Link href="Contacts"> Contacts</Link>
+            <Link className={styles.link} href="Contacts">
+              {" "}
+              Contacts
+            </Link>
           </li>
         </ul>
-        <button className=" mx-5 py-2 px-3 bg-orange-400 rounded-md p-4 text-white">
+        <button className=" mx-5 py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
           Donate
         </button>
       </div>
