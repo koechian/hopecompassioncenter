@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import { Delius } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/header";
+import Footer from "./components/Footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const delius = Delius({ subsets: ["latin"], weight: ["400"] });
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
 
-        {children}</body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

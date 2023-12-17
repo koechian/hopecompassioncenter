@@ -2,23 +2,23 @@ import React from "react";
 
 function About() {
   return (
-    <div className="bg-amber-950 flex flex-col justify-center items-center sm:py-0 md:py-20">
+    <div className="bg-brown flex flex-col justify-center items-center mobile:py-0 tablet:py-10 desktop:py-20">
       <section
         style={{
           background: "url('/hcc_banner.png')",
           backgroundSize: "cover",
         }}
-        className="banner-image-section w-full md:w-10/12 md:rounded-lg sm:rounded-none h-72 sm:h-96 rounded-lg justify-center items-center flex"
+        className="banner-image-section w-full tablet:w-10/12 desktop:w-11/12 tablet:rounded-lg mobile:rounded-none h-72 mobile:h-96 rounded-lg justify-center items-center flex"
       >
         <h1 className="font-bold text-7xl text-white">About Us</h1>
       </section>
 
-      <section className="about-section bg-white md:w-3/4 sm:w-11/12 w-full rounded-0 sm:p-10 p-5 sm:-translate-y-20 sm:rounded-lg">
+      <section className="about-section bg-white tablet:w-9/12 w-full rounded-0 mobile:p-10 p-5 mobile:-translate-y-20 mobile:rounded-lg">
         <div className="about-description flex flex-col gap-3">
-          <h3 className="text-orange-500 text-3xl text-center md:text-5xl font-semibold">
+          <h3 className="text-orange tablet:text-3xl desktop:text-5xl text-center font-semibold">
             Our Story, so far
           </h3>
-          <p className="text-sm md:text-lg text-justify font-light">
+          <p className="text-sm tablet:text-sm desktop:text-lg text-justify font-light">
             From feeding over 200 children in Mathare to providing safe spaces
             for young minds, empowering the youth through skill development, and
             supporting elderly women in Migori, our impact resonates through
@@ -26,16 +26,16 @@ function About() {
           </p>
         </div>
         <div className="about-story flex flex-col gap-5 py-10">
-          <h4 className="text-orange-500 text-3xl font-semibold">
+          <h4 className="text-orange text-2xl desktop:text-3xl font-semibold">
             The Genesis
           </h4>
-          <div className="flex flex-col-reverse md:flex-row gap-4 sm:gap-20">
+          <div className="flex flex-col-reverse tablet:flex-col desktop:flex-row gap-4 tablet:gap-2 mobile:gap-20">
             <img
-              className="w-full sm:w-5/12 rounded-md h-72 object-cover sm:h-96"
+              className="w-full mobile:w-5/12 tablet:w-full tablet:h-[25vh] rounded-md h-72 object-cover mobile:h-96"
               src="/story.png"
               alt=""
             />
-            <p className="text-sm sm:text-lg text-justify font-light">
+            <p className="text-sm tablet:text-sm mobile:text-lg text-justify font-light">
               The journey started when Kelvin Otieno was in university. He had a
               habit of coming to Mathare frequently to give sweets to the
               children and play with them. On one particular day as he was doing
@@ -60,18 +60,18 @@ function About() {
               university, he started a feeding program in 2017. He would prepare
               porridge and serve children to at least curb the hunger issues.
               That’s when Hope Compassion Center was born. So far more than 200
-              children have benefitext-sm sm:text-lg text-justify font-lightted
+              children have benefitext-sm mobile:text-lg text-justify font-lightted
               from this program.
             </p>
           </div>
-          <div className="flex flex-col-reverse sm:flex-row-reverse gap-20 sm:py-10">
+          <div className="flex flex-col-reverse desktop:flex-row-reverse gap-20 mobile:py-10">
             <img
-              className="w-full sm:w-6/12 rounded-md h-52 sm:h-3/4 object-cover"
+              className="w-full tablet:w-full desktop:w-6/12 rounded-md h-52 desktop:h-3/4 object-cover"
               src="/fire.png"
               alt=""
             />
-            <div className="flex flex-col gap-10 w-full sm:w-6/12 items-start">
-              <p className="text-sm sm:text-lg text-justify font-light">
+            <div className="flex flex-col gap-10 w-full desktop:w-6/12 items-start">
+              <p className="text-sm desktop:text-lg text-justify font-light">
                 Mathare slums suffer frequent mysterious fires which pose
                 prevalent risk to properties and the lives of people, children
                 being the most affected. On one of the occasions, 7 children
@@ -83,19 +83,19 @@ function About() {
                 determined to do something about it.
               </p>
               <img
-                className="w-full object-cover rounded-md h-52 sm:h-96 "
+                className="w-full object-cover rounded-md h-52 mobile:h-96 "
                 src="/vaccine.png"
                 alt=""
               />
             </div>
           </div>
 
-          <h4 className="text-orange-500 text-3xl font-semibold">
+          <h4 className="text-orange text-2xl desktop:text-3xl font-semibold">
             More Help is Found
           </h4>
-          <div className="flex flex-col sm:flex-row  gap-20">
-            <div className="flex w-full sm:w-1/2 flex-col gap-5 items-start">
-              <p className="text-sm sm:text-lg text-justify font-light">
+          <div className="flex flex-col desktop:flex-row  gap-20">
+            <div className="flex w-full desktop:w-1/2 flex-col gap-5 items-start">
+              <p className="text-sm desktop:text-lg text-justify font-light">
                 In 2020, Kelvin met Sandra Van Dyke, a passionate philanthropist
                 whose heart was in Africa. She sponsored the building of a safe
                 space for kids, where we call it the kids hub; which consists of
@@ -105,23 +105,23 @@ function About() {
                 care of by a highly-trained and loving team.
               </p>
               <img
-                className="w-full object-cover rounded-md h-52 sm:h-96"
+                className="w-full object-cover rounded-md h-52 desktop:h-96"
                 src="/construction.png"
                 alt=""
               />
             </div>
             <img
-              className="w-full sm:w-1/2 rounded-md h-52 sm:h-96 object-cover"
+              className="w-full desktop:w-1/2 rounded-md h-52 desktop:h-96 object-cover"
               src="/vandyke.png"
               alt=""
             />
           </div>
 
-          <h4 className="text-orange-500 font-semibold pt-10 text-3xl">
+          <h4 className="text-orange font-semibold pt-10 text-3xl">
             The Initiative Grows, and so does its Impact
           </h4>
-          <div className="flex flex-col sm:flex-row  gap-20">
-            <p className="text-sm sm:text-lg text-justify font-light">
+          <div className="flex flex-col desktop:flex-row  gap-20">
+            <p className="text-sm desktop:text-lg text-justify font-light">
               You will come to realize that the more you engage in community
               work, the more you identify the many gaps that need to be filled
               and that you are inspired to do even more and to transform the
@@ -140,18 +140,18 @@ function About() {
               sense of responsibility and mindset shift in them.
             </p>
             <img
-              className="w-full sm:w-5/12 rounded-md h-72"
+              className="w-full object-cover desktop:w-5/12 rounded-md h-72"
               src="/football.png"
               alt=""
             />
           </div>
-          <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-20">
+          <div className="flex flex-col-reverse desktop:flex-row gap-3 desktop:gap-20">
             <img
-              className="w-full sm:w-5/12 rounded-md h-72"
+              className="w-full object-cover desktop:w-5/12 rounded-md h-72"
               src="/farming.png"
               alt=""
             />
-            <p className="text-sm sm:text-lg text-justify font-light">
+            <p className="text-sm desktop:text-lg text-justify font-light">
               Understanding, caring, and supporting the needs of the elderly is
               at the core of our values as well. In Migori we are supporting a
               group of more than 40 elderly women who had lost all hope in life
@@ -165,10 +165,10 @@ function About() {
             </p>
           </div>
 
-          <h4 className="text-orange-500 text-xl text-center sm:text-start sm:text-3xl font-semibold pt-10">
+          <h4 className="text-orange text-xl text-center desktop:text-start desktop:text-3xl font-semibold pt-10">
             Where we are now and where we aim to grow to
           </h4>
-          <p className="text-sm sm:text-lg text-justify font-light">
+          <p className="text-sm desktop:text-lg text-justify font-light">
             Over the years we have fed more than 200 children through the
             feeding program The livelihood of the women has improved through the
             skills training, financial mentorship, and economic empowerment
@@ -186,19 +186,19 @@ function About() {
             village.
           </p>
 
-          <div className="flex flex-col gap-10 sm:gap-0 sm:flex-row justify-between">
-            <div className="flex flex-col w-full sm:w-1/2 items-start justify-center">
+          <div className="flex flex-col tablet:flex-row gap-10 desktop:gap-0 desktop:flex-row justify-between">
+            <div className="flex flex-col w-full desktop:w-1/2 items-start justify-center">
               <img
-                className="w-full sm:w-11/12 rounded-md h-52 sm:h-96 object-cover"
+                className="w-full desktop:w-11/12 rounded-md h-52 desktop:h-96 object-cover"
                 src="/childcare.png"
                 alt=""
               />
               <small>The Childcare Center, finally complete</small>
             </div>
 
-            <div className="flex flex-col w-full sm:w-1/2 items-start justify-center">
+            <div className="flex flex-col w-full desktop:w-1/2 items-start justify-center">
               <img
-                className="w-full sm:w-11/12 rounded-md h-52 sm:h-96 object-cover"
+                className="w-full desktop:w-11/12 rounded-md h-52 desktop:h-96 object-cover"
                 src="/partners.png"
                 alt=""
               />

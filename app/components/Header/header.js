@@ -60,7 +60,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={styles.link} href="Contacts">
+            <Link className={styles.link} href="/pages/contact">
               {" "}
               Contacts
             </Link>
