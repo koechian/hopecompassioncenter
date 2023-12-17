@@ -22,8 +22,8 @@ const Header = () => {
       <div className="flex items-right justify-end w-3/4">
         <ul className="flex justify-between flex-row mr-5 p-2 w-1/2">
           <li className="list-none">
-            <Link className="no-underline" href="#">
-              {" "}
+            <Link className="no-underline" href="/">
+
               Home
             </Link>
           </li>
@@ -34,7 +34,7 @@ const Header = () => {
             <Link href="/projects"> Projects</Link>
           </li>
           <li>
-            <Link href="Contacts"> Contacts</Link>
+            <Link href="/contact"> Contacts</Link>
           </li>
         </ul>
         <button className=" mx-5 py-2 px-3 bg-orange-400 rounded-md p-4 text-white">
