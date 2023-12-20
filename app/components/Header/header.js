@@ -66,9 +66,11 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <button className=" mx-5 py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
-          Donate
-        </button>
+        <Link href={'/pages/donate'}>
+          <button className=" mx-5 py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
+            Donate
+          </button>
+        </Link>
       </div>
     </nav>
   );
