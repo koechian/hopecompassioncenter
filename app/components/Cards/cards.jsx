@@ -24,3 +24,31 @@ export const ProjectCard = (props) => {
     )
 }
 
+export const HomeProjectCard = (props) => {
+    return (
+        <div className="w-full tablet:w-11/12 flex flex-col desktop:flex-row bg-cream p-2 py-3 gap-4 rounded-md h-full">
+            <img src={props.item.content_banner} alt="" className='w-full desktop:w-1/2 h-[inherit] !tablet:h-[20vh] desktop:h-full object-cover rounded-md' />
+            <div className="w-full desktop:w-1/2 flex flex-col justify-between tablet:h-full">
+                <div className="flex flex-col">
+                    <h3 className="text-md tablet:text-2xl font-semibold text-brown">
+                        {props.item.content_title}
+                    </h3>
+                    <p className='text-gray-500 tablet:text-sm text-xs font-light py-3 overflow-hidden'>
+                        <span className="line-clamp-5 max-h-[15vh]">
+                            {props.item.content_description}
+                        </span>
+                    </p>
+                </div>
+
+                <button className='bg-orange w-fit gap-3 rounded-md mt-3 flex flex-row justify-center px-5 text-cream py-2'>
+                    Learn More
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+
+                </button>
+            </div>
+        </div>
+    )
+}
+
