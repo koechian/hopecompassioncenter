@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const ProjectCard = (props) => {
     return (
-        <div className="w-11/12 flex flex-col justify-start p-3 gap-1 desktop:gap-3 rounded-md bg-cream">
+        <div className="w-11/12 hover:scale-105 transition-all ease-in flex flex-col justify-start p-3 gap-1 desktop:gap-3 rounded-md bg-cream">
             <span className="bg-[#251600AB] px-2 w-fit rounded-sm text-brown">{Math.trunc((props.given_donations / props.requested_donations) * 100)}%</span>
             <img src={props.banner_img} className='w-full' alt="" />
             <span className="flex flex-row items-center gap-2 text-sm desktop:text-md"><h3 className="text-orange font-bold font-josefin">DONATIONS :</h3> <h3 className="font-josefin"><b>KES {props.given_donations}</b> / KES {props.requested_donations}</h3></span>

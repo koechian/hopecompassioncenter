@@ -6,7 +6,7 @@ export default function Page() {
   return <div className="w-full  bg-brown flex items-center flex-col">
     <div className="flex flex-col desktop:flex-row w-10/12 pt-16 desktop:py-20">
       <div className="w-full mobile:w-1/2 flex flex-col gap-5 desktop:gap-20">
-        <h2 className="text-white text-4xl desktop:text-5xl font-semibold">WE ARE ON A CAUSE TO SPREAD PEACE, LOVE & HARMONY</h2>
+        <h2 className="text-white text-4xl desktop:text-5xl font-semibold">We Are On A Cause To Spread Peace, Love & Harmony .</h2>
 
         <button className="bg-orange flex gap-2 rounded-full text-cream outline-none w-fit px-4 py-1.5">Make Donation
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
