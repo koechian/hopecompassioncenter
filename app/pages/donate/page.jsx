@@ -34,28 +34,28 @@ function Donate() {
                     <img src="/graphic.png" className='w-36 rotate-180' alt="" />
                 </div>
                 <div className="w-full desktop:w-1/2 tablet:w-full bg-[#3C2300] desktop:h-[70vh] h-fit tablet:h-fit relative justify-center items-center flex py-10 tablet:justify-center tablet:flex tablet:py-10">
-                    <form className="w-11/12 desktop:w-9/12 tablet:w-9/12 bg-cream relative desktop:absolute tablet:relative p-5 desktop:p-10 desktop:top-20 top-0 left-0 tablet:top-0 gap-4 flex flex-col desktop:left-32 tablet:left-0 rounded-md">
+                    <form className="w-11/12 desktop:w-9/12 tablet:w-9/12 bg-white relative p-5 desktop:p-10  top-0 left-0 tablet:top-0 gap-4 flex flex-col tablet:left-0 rounded-md">
                         <div className="flex flex-col gap-3 text-lg">
-                            <label htmlFor="name" className='font-semibold'>Name</label>
-                            <input type="text" className='w-100 rounded-md text-md desktop:text-3xl px-3 py-3 placeholder:text-[#C9C9C9]' placeholder='Full name' />
+                            <label htmlFor="name" className='font-semibold text-lg'>Name</label>
+                            <input type="text" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Full name' />
                         </div>
 
                         <div className="flex flex-col gap-3 text-lg">
-                            <label htmlFor="email" className='font-semibold'>Email</label>
-                            <input type="email" className='w-100 rounded-md text-md desktop:text-3xl px-3 py-3 placeholder:text-[#C9C9C9]' placeholder='Enter your email' />
+                            <label htmlFor="email" className='font-semibold text-lg'>Email</label>
+                            <input type="email" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Enter your email' />
                         </div>
                         <div className="flex flex-col gap-3 text-lg">
-                            <label htmlFor="phone" className='font-semibold'>Phone</label>
-                            <input type="number" className='w-100 rounded-md text-md desktop:text-3xl px-3 py-3 placeholder:text-[#C9C9C9]' placeholder='Phone number' />
+                            <label htmlFor="phone" className='font-semibold text-lg'>Phone</label>
+                            <input type="number" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Phone number' />
                         </div>
                         <div className="flex flex-col gap-3 text-lg">
-                            <label htmlFor="name" className='font-semibold'>Donate</label>
-                            <input type="number" className='w-100 rounded-md text-md desktop:text-3xl px-3 py-3 placeholder:text-[#C9C9C9]' placeholder='Donate' />
+                            <label htmlFor="name" className='font-semibold text-lg'>Donate</label>
+                            <input type="number" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Donate' />
                         </div>
                         <p className='font-light text-sm desktop:text-md  text-brown py-3'>
                             We really appreciate your kindness and value your contributions. So we keep detailed records of where your money goes to support everyone in need. Feel free to request these records anytime.
                         </p>
-                        <div className="flex flex-col desktop:pt-10 justify-start">
+                        <div className="flex flex-col desktop:pt-5 justify-start">
                             <button type='button' className='bg-orange py-3 px-4 w-2/4 rounded-md text-[#25160087] hover:text-cream'>Make Donation</button>
                         </div>
                     </form>
