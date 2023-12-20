@@ -51,7 +51,12 @@ export default function Page() {
     </div>
     <div class="w-10/12 grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 grid-flow-row gap-4">
       {
-        projects.map((project) => (<ProjectCard banner_img={project.banner_img} />))
+        projects.map((project) => (<ProjectCard
+          banner_img={project.banner_img}
+          requested_donations={project.requested_donations}
+          given_donations={project.given_donations}
+          project_name={project.project_name}
+        />))
       }
     </div>
   </div>
