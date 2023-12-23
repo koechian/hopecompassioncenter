@@ -25,3 +25,7 @@ section {
 .font-josefin {
   font-family: "Josefin Slab", sans-serif;
 }
+
+.bg-blur {
+  backdrop-filter: blur(3px);
+}

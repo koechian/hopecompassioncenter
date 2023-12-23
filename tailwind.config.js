@@ -6,7 +6,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    
+
     screens: {
       'mobile': '475px',
 
@@ -24,7 +24,7 @@ module.exports = {
         brown: "#251600",
         cream: "#edf1dd",
         orange: "#FF6803",
-        green: "#003e1f",
+        orange_light: "#eb5c31"
       },
       transitionTimingFunction: {
         'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',

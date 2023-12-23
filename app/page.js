@@ -84,7 +84,7 @@ export default function Landing() {
         </div>
       </section>
       <section className="p-0">
-        <div className="flex flex-col items-start tablet:items-center gap-4 px-5 py-10">
+        <div className="flex flex-col items-start tablet:items-center desktop:items-start desktop:px-20 gap-4 px-5 py-20">
           <h1 className="text-orange font-semibold desktop:font-bold text-2xl w-11/12 tablet:text-4xl">
             Building Hope, Nurturing dreams and empowering communities together.
           </h1>
