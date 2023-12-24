@@ -11,39 +11,39 @@ function About() {
 
   return (
     <div className="bg-brown relative flex flex-col justify-center items-center">
-      <section className="w-full bg-cream py-20 gap-10 flex flex-col justify-center items-center">
-        <h2 className="text-brown font-semibold text-6xl">
+      <section className="w-full bg-cream py-10 desktop:py-20 gap-10 flex flex-col justify-center items-center">
+        <h2 className="text-brown font-semibold text-5xl desktop:text-6xl">
           About Us
         </h2>
         <p className='text-brown opacity-75 desktop:pb-20 w-[85%] mobile:w-1/2 text-center text-sm mobile:text-md'>From feeding over 200 children in Mathare to providing safe spaces for young minds, empowering the youth through skill development, and supporting elderly women in Migori, our impact resonates through transformative actions that span across generations.</p>
       </section>
-      <img src="/hcc_banner.png" className="w-3/4 -translate-y-20  opacity-1" alt="" />
-      <section className="flex flex-col w-3/4 py-10">
+      <img src="/hcc_banner.png" className="w-full tablet:w-3/4 tablet:-translate-y-20  opacity-1" alt="" />
+      <section className="flex flex-col px-4 tablet:w-11/12 desktop:w-3/4 py-10">
 
-        <div className="flex flex-row w-full gap-4 justify-between">
+        <div className="flex flex-col tablet:flex-row w-full gap-4 justify-between">
 
-          <div className="flex flex-col justify-between gap-5 w-5/12">
-            <h2 className="text-cream font-semibold text-6xl">
+          <div className="flex flex-col justify-start desktop:justify-between gap-5 w-full tablet:w-5/12">
+            <h2 className="text-cream font-semibold text-3xl tablet:text-5xl desktop:text-6xl">
               Our Mission & Vision
             </h2>
             <div className="flex flex-col w-full">
-              <h4 className="text-orange text-2xl">
+              <h4 className="text-orange text-xl desktop:text-2xl">
                 OUR VISION
               </h4>
-              <p className="text-cream">To realize an inspired, empowered and transformed community.</p>
+              <p className="text-cream text-sm font-light desktop:font-normal tablet:text-base">To realize an inspired, empowered and transformed community.</p>
             </div>
             <div className="flex flex-col w-full">
-              <h4 className="text-orange text-2xl">
+              <h4 className="text-orange text-xl desktop:text-2xl">
                 OUR MISSION
               </h4>
-              <p className="text-cream">To reach out to vulnerable  children, the elderly, women and the youth through education, mentorship, empowerment initiatives and outreach programs to realize a better community</p>
+              <p className="text-cream text-sm font-light desktop:font-normal tablet:text-base">To reach out to vulnerable  children, the elderly, women and the youth through education, mentorship, empowerment initiatives and outreach programs to realize a better community</p>
             </div>
 
           </div>
 
-          <div className="flex flex-col bg-cream shadow-md rounded h-fit py-5 gap-3 px-10 w-1/2">
-            <h3 className="text-3xl font-semibold text-brown">"Our mission is to eradicate all and any traces of sadness in the universe"</h3>
-            <p>At Hope Center, we work diligently and sincerely to improve our community by working together to help those who are in need. We aspire to inspire more people to join us in this movement. Our teams have cultivated a culture that entails:</p>
+          <div className="flex flex-col bg-cream shadow-md rounded h-fit py-5 gap-3 px-4 tablet:px-10 w-full tablet:w-1/2">
+            <h3 className="text-xl tablet:text-3xl font-semibold text-brown">"Our mission is to eradicate all and any traces of sadness in the universe"</h3>
+            <p className="text-sm tablet:text-base">At Hope Center, we work diligently and sincerely to improve our community by working together to help those who are in need. We aspire to inspire more people to join us in this movement. Our teams have cultivated a culture that entails:</p>
             <div className="grid grid-cols-2 gap-3">
               {
                 core_values.map((value) => (
@@ -78,13 +78,13 @@ function About() {
         </div>
       </section>
 
-      <section className="flex flex-col w-3/4 pt-20">
-        <div className="flex flex-row justify-between py-20">
-          <h2 className="text-cream font-semibold text-6xl w-5/12">
-            Our Story, <br /> so far ...
+      <section className="flex flex-col w-full px-4 tablet:w-11/12 desktop:w-3/4 pt-0 desktop:pt-20">
+        <div className="flex flex-col tablet:flex-row justify-between py-10 tablet:py-20">
+          <h2 className="text-cream font-semibold w-full tablet:w-5/12 tablet:text-5xl text-3xl desktop:text-6xl">
+            Our Story, <br className="hidden tablet:block" /> so far ...
           </h2>
 
-          <div className="w-5/12">
+          <div className="w-full py-5 tablet:py-0 tablet:w-5/12">
             <p className="font-light text-cream text-md ">From feeding over 200 children in Mathare to providing safe spaces for young minds, empowering the youth through skill development, and supporting elderly women in Migori, our impact resonates through transformative actions that span across generations.</p>
           </div>
 
@@ -96,11 +96,16 @@ function About() {
             buttons.map((btn, index) => (
               <button
                 onClick={() => { setSelected(index) }}
-                className={`ring-1 ring-orange ${selected == index ? 'bg-orange text-cream ' : 'bg-brown text-orange'} z-[2] w-2/12 hover:bg-orange_light hover:text-gray-300 hover:scale-105 transition-all ease-in-expo rounded py-2 uppercase`}>{btn.toString()}</button>
+                className={`ring-1 ring-orange ${selected == index ? 'bg-orange text-cream ' : 'bg-brown text-orange'} z-[2] w-2/12 hover:bg-orange_light hover:text-gray-300 hover:scale-105 transition-all ease-in-expo rounded-full tablet:rounded py-2 uppercase `}>
+                <p className="hidden tablet:block">{btn.toString()}</p>
+                <p className="block tablet:hidden">{index + 1}</p>
+              </button>
             ))
           }
-        </div>
 
+
+        </div>
+        <p className="w-full text-center text-gray-400 uppercase py-5 text-xl tablet:hidden">{buttons[selected]}</p>
         {
           sections[selected]
         }
@@ -108,7 +113,7 @@ function About() {
 
       <div className="w-full bg-cream flex justify-center items-center">
         <div className="w-3/4">
-          
+
         </div>
       </div>
     </div>

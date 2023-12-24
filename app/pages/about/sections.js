@@ -1,16 +1,16 @@
 export const SectionOne = () => {
     return (
-        <div className="flex flex-col gap-20 py-10 !text-cream justify-center items-center">
-            <div className="flex flex-row-reverse justify-between gap-3 justify-baseline py-10">
-                <div className="w-4/12 h-[initial] justify-baseline items-center flex flex-col">
-                    <img src="/story.png" className="w-3/4 object-cover" alt="" />
+        <div className="flex flex-col gap-20 py-0 tablet:py-10 !text-cream justify-center items-center">
+            <div className="flex flex-col-reverse tablet:flex-row-reverse justify-between gap-3 justify-baseline py-10">
+                <div className="w-full tablet:w-1/4 desktop:w-4/12 h-[initial] justify-baseline items-center flex flex-col">
+                    <img src="/story.png" className="w-full tablet:w-full desktop:w-3/4 h-[30vh] desktop:h-fit object-cover" alt="" />
                     <div className="flex flex-row justify-center w-full items-center py-4">
                         <span className="w-1/4 bg-orange h-1"></span>
                     </div>
                 </div>
-                <div className="w-8/12 flex flex-col">
+                <div className="w-full tablet:w-3/4 desktop:w-8/12 flex flex-col">
                     <h3 className="text-orange text-3xl font-semibold pb-5">KELVIN’S ENCOUNTERS</h3>
-                    <p className="text-sm w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
+                    <p className="text-sm w-full tablet:w-11/12 desktop:w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
                         The journey started when Kelvin Otieno was in university. He had a
                         habit of coming to Mathare frequently to give sweets to the
                         children and play with them. On one particular day as he was doing
@@ -42,8 +42,8 @@ export const SectionOne = () => {
 
             </div>
 
-            <div className="flex flex-row-reverse justify-between w-full gap-5">
-                <div className="w-7/12 flex flex-col">
+            <div className="flex flex-col tablet:flex-row-reverse justify-between w-full gap-5">
+                <div className="w-full tablet:w-7/12 flex flex-col">
                     <h3 className="text-orange text-3xl font-semibold pb-5">MATHARI FIRES</h3>
                     <p className="text-sm desktop:text-base text-justify font-light">
                         Mathare slums suffer frequent mysterious fires which pose
@@ -60,9 +60,9 @@ export const SectionOne = () => {
                         determined to do something about it.
                     </p>
                 </div>
-                <div className="flex w-5/12 h-[inherit] items-center justify-start">
+                <div className="flex w-full tablet:w-5/12 h-[inherit] items-center justify-start">
                     <img
-                        className="w-10/12  h-[inherit] justify-center flex"
+                        className="w-full tablet:w-10/12  h-[inherit] justify-center flex"
                         src="/fire.png"
                         alt=""
                     />
@@ -75,19 +75,19 @@ export const SectionOne = () => {
 
 export const SectionTwo = () => {
     return (
-        <div className="w-full flex flex-row gap-5 py-20 justify-between">
-            <div className="w-1/3 flex flex-col">
+        <div className="w-full flex flex-col tablet:flex-row gap-5 py-4 tablet:py-20 justify-between">
+            <div className="w-full tablet:w-2/3 desktop:w-1/3 flex flex-col">
                 <h3 className="text-orange text-3xl font-semibold pb-5">SANDRA VAN DYKE</h3>
-                <p className="text-base text-cream w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
+                <p className="text-base text-cream w-full tablet:w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
                     In 2020, Kelvin met Sandra Van Dyke, a passionate philanthropist whose heart was in Africa. She sponsored the building of a safe space for kids, where we call it the kids hub; which consists of a daycare , and Montessori Education program for children aged between 9 months to 3 years. <br /> <br /> This center exists to provide a safe and secured place for children where they are well taken care of by a highly-trained and loving team.
                 </p>
             </div>
-            <div className="w-2/3 grid grid-cols-2 gap-5 items-end">
+            <div className="w-full tablet:w-1/3 desktop:w-2/3 grid desktop:grid-cols-2 tablet:grid-cols-1 grid-cols-2 gap-5 items-end">
                 <img
-                    className="w-full object-cover rounded-md h-[100%]"
+                    className="w-full object-cover tablet:pb-2 rounded-md h-[100%] tablet:h-[10vh] tablet:w-full desktop:h-[100%]"
                     src="/vandyke.png" alt="" />
                 <img
-                    className="w-10/12 object-cover rounded-md h-52 desktop:h-[100%]"
+                    className="w-full desktop:w-10/12 object-cover rounded-md h-52 tablet:h-[10vh] tablet:w-full desktop:h-[100%]"
                     src="/construction.png"
                     alt=""
                 />
@@ -99,16 +99,16 @@ export const SectionTwo = () => {
 export const SectionThree = () => {
     return (
         <div className="w-full flex flex-col py-20">
-            <div className="flex flex-row">
-                <div className="w-2/3 flex flex-col">
+            <div className="flex flex-col tablet:flex-row">
+                <div className="w-full tablet:w-2/3 flex flex-col">
                     <h3 className="text-orange text-3xl font-semibold pb-5">IMPACT ON THE YOUTH</h3>
-                    <p className="text-base text-cream w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
+                    <p className="text-base text-cream w-full tablet:w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
                         You will come to realize that the more you engage in community work, the more you identify the many gaps that need to be filled and that you are inspired to do even more and to transform the community at large. This urge has led us to aim at inspiring, empowering and transforming the community holistically; the youths, women, and the elderly in Migori.
                         <br /><br />
                         Having recognized the need in the society, we were motivated to start a youth empowering initiative. This program brings together 25 youths who meet every Thursday. With very few resources to survive in the city, and no skills at all has sabotaged our youths.  The delinquencies among the youth have contributed to stigma in the community. This hinders them from prospering and excelling in life. The project seeks to instill and ingrain the social norms and values in delinquent youth groups by developing a sense of responsibility and mindset shift in them.
                     </p>
                 </div>
-                <div className="w-1/3 flex">
+                <div className="w-full py-3 tablet:py-0 tablet:w-1/3 flex">
                     <img
                         className="w-full object-cover rounded-md h-[100%]"
                         src="/football.png"
@@ -116,8 +116,8 @@ export const SectionThree = () => {
                     />
                 </div>
             </div>
-            <div className="w-full flex flex-row-reverse gap-20 py-20 justify-between">
-                <div className="w-1/3 flex flex-col">
+            <div className="w-full flex flex-col tablet:flex-row-reverse gap-20 py-20 justify-between">
+                <div className="w-full tablet:w-1/3 flex flex-col">
                     <h3 className="text-orange text-3xl font-semibold pb-5">SUPPORT IN MIGORI</h3>
                     <p className="text-base text-cream w-full tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
                         Understanding, caring, and supporting the needs of the elderly is
@@ -132,7 +132,7 @@ export const SectionThree = () => {
                         making, candle making, and jelly making.
                     </p>
                 </div>
-                <div className="w-2/3 grid grid-cols-2 gap-5 items-end">
+                <div className="w-full tablet:w-2/3 grid grid-cols-1 tablet:grid-cols-2 gap-5 items-end">
                     <img
                         className="w-full object-cover rounded-md h-[100%]"
                         src="/farming.png" alt="" />
@@ -152,11 +152,11 @@ export const SectionThree = () => {
 export const SectionFour = () => {
     return (
         <div className="w-full py-20">
-            <div className="flex flex-row gap-10">
-                <div className="w-1/2 flex flex-col">
+            <div className="flex flex-col desktop:flex-row gap-10">
+                <div className="w-full desktop:w-1/2 flex flex-col">
                     <h3 className="text-orange text-3xl font-semibold pb-5">THE FUTURE</h3>
 
-                    <p className="text-base text-cream w-full tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light" >
+                    <p className="text-sm text-cream w-full desktop:text-base mobile:text-lg text-justify font-light" >
                         Over the years we have fed more than 200 children through the
                         feeding program The livelihood of the women has improved through the
                         skills training, financial mentorship, and economic empowerment
@@ -174,7 +174,7 @@ export const SectionFour = () => {
                         village.
                     </p>
                 </div>
-                <div className="w-1/2 flex flex-col items-end gap-3">
+                <div className="w-full tablet:w-1/2 flex flex-col items-end gap-3">
                     <img
                         className="w-full desktop:w-11/12 rounded-md h-52 desktop:h-96 object-cover"
                         src="/childcare.png"
