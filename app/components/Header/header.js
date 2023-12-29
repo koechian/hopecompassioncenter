@@ -12,6 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,50 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll);
   });
+
+  function toggleSideNav() {
+    setIsOpen(!isOpen)
+  }
+
+  const SideNav = () => {
+    return (
+      <div className={" desktop:hidden tablet:w-1/2 tablet:right-0 w-[100%] p-4 flex flex-col absolute bg-white top-[100%]"}>
+        <ul className="flex flex-col gap-4 w-full justify-center tablet:items-start tablet:px-10 items-center">
+          <li>
+            <Link href='/'>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="/pages/about">
+              {" "}
+              About
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="/pages/projects">
+              {" "}
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="/pages/contact">
+              {" "}
+              Contacts
+            </Link>
+          </li>
+          <li className="w-full">
+            <Link href={'/pages/donate'} className="tablet:hidden w-full flex" >
+              <button className="w-full py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
+                Donate
+              </button>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    )
+  }
+
   return (
     <nav
       className={[`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`].join(
@@ -40,7 +85,7 @@ const Header = () => {
           ></Image>
         </div>
       </div>
-      <div className="flex items-right justify-end desktop:w-3/4 w-fit">
+      <div className="flex relative items-right justify-end desktop:w-3/4 w-fit">
         <ul className="justify-between flex-row mr-5 p-2 w-1/2 hidden desktop:flex">
           <li className="list-none">
             <Link className={styles.link} href="/">
@@ -67,17 +112,30 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <button className="desktop:hidden ring-1 rounded-md px-3 hover:bg-slate-300">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
+        <button
+          onClick={toggleSideNav}
+          className="desktop:hidden ring-1 rounded-md px-3 hover:bg-slate-300">
+          {!isOpen
+            ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg> :
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          }
         </button>
         <Link href={'/pages/donate'} className="hidden tablet:flex" >
           <button className=" mx-5 py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
             Donate
           </button>
         </Link>
+
+
       </div>
+
+      {
+        isOpen ? <SideNav /> : null
+      }
     </nav>
   );
 };
