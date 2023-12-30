@@ -1,9 +1,60 @@
-import React from 'react'
+'use client'
+import React, { useRef } from 'react'
 import Link from 'next/link'
+import emailjs from '@emailjs/browser';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 function Contact() {
+
+    const firstNameRef = useRef()
+    const lastNameRef = useRef()
+    const subjectRef = useRef()
+    const emailRef = useRef()
+    const messageRef = useRef()
+
+    const handleContact = (e) => {
+        e.preventDefault()
+
+        const templateParams = {
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            subject: subjectRef.current.value,
+            email: emailRef.current.value,
+            message: messageRef.current.value
+        }
+
+        emailjs.send("service_pozgjuc", "template_7yfuiqt", templateParams, "Youw4xtWKzvQsLBA5")
+            .then(function (response) {
+                toast.success('We have received your mail. Thank you for reaching out.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }, function (error) {
+                toast.error(`Mail could not be sent, try again later. ${error}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
+
+    }
     return (
         <div className="flex flex-col">
+            <ToastContainer />
+
             <div className="w-full bg-brown py-20 gap-5 flex flex-col justify-center items-center">
                 <h2 className="text-white font-semibold text-5xl">
                     Contact Us
@@ -20,7 +71,9 @@ function Contact() {
             </div>
 
             <div className="flex flex-col justify-center items-center bg-cream py-10 mobile:py-20">
-            <form className="w-full tablet:w-10/12 desktop:w-1/2 mobile:bg-white mobile:shadow-lg rounded-lg mobile:p-5 ">
+                <form
+                    onSubmit={handleContact}
+                    className="w-full tablet:w-10/12 desktop:w-1/2 mobile:bg-white mobile:shadow-lg rounded-lg mobile:p-5 ">
                     <div className="w-full gap-5 mobile:gap-10 px-8 mobile:py-10 border-b-2 flex flex-col mobile:flex-row">
                         <div className="w-full mobile:w-1/2 flex flex-col gap-3">
                             <h3 className='font-semibold text-2xl'>Contact Us</h3>
@@ -40,7 +93,7 @@ function Contact() {
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                 </svg>
 
-                                <h5>hopecenter@gmail.com</h5>
+                                <h5>info@hopecompassioncenter.com</h5>
                             </div>
                             <div className="flex flex-row items-center justify-start gap-4 py-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="font-bold w-6 h-6">
@@ -56,27 +109,27 @@ function Contact() {
                         <div className="w-full flex gap-5 flex-col mobile:flex-row">
                             <div className="flex flex-col w-full tablet:w-1/2 gap-2">
                                 <label htmlFor="name" className='text-lg font-semibold'>Name:</label>
-                                <input type="text" className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your name' />
+                                <input type="text" ref={firstNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your name' />
                             </div>
                             <div className="flex flex-col w-full tablet:w-1/2 gap-2">
                                 <label htmlFor="name" className='text-lg font-semibold'>Last Name:</label>
-                                <input type="text" className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter last name' />
+                                <input type="text" ref={lastNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter last name' />
                             </div>
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="email" className='text-lg font-semibold'>Email:</label>
-                            <input type="email" className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your email' />
+                            <input type="email" ref={emailRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your email' />
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="subject" className='text-lg font-semibold'>Subject:</label>
-                            <input type="text" className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your subject' />
+                            <input type="text" ref={subjectRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your subject' />
                         </div>
                         <div className="flex flex-col w-full gap-2">
                             <label htmlFor="message" className='text-lg font-semibold'>Message:</label>
-                            <textarea name="" className='w-full rounded-md border-0 py-2 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6' id="" cols="30" rows="5"></textarea>
+                            <textarea name="" ref={messageRef} className='w-full rounded-md border-0 py-2 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6' id="" cols="30" rows="5"></textarea>
                             <small className="text-sm">By sending this message you agree to our <b className='text-blue-600 font-light'>terms & conditions</b></small>
                         </div>
-                        <button className="rounded bg-orange text-brown w-fit px-10 py-2" type='button'> Submit</button>
+                        <button className="rounded bg-orange text-brown w-fit px-10 py-2" type='submit'> Submit</button>
                     </div>
                 </form>
             </div>

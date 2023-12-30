@@ -1,10 +1,59 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
+
 
 function Donate() {
 
     const [openPayments, setOpenPayments] = useState(false)
+    const nameRef = useRef()
+    const emailRef = useRef()
+    const phoneRef = useRef()
+    const mpesaRef = useRef()
+
+    const handleDonate = (e) => {
+
+        e.preventDefault()
+
+        // console.log(process.env.NEXT_SERVICE_ID)
+
+        var templateParams = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            phone: phoneRef.current.value,
+            mpesaCode: mpesaRef.current.value
+        };
+
+        emailjs.send("service_pozgjuc","template_ak7llxh", templateParams, "Youw4xtWKzvQsLBA5")
+            .then(function (response) {
+                toast.success('We have received your donation mail.We appreciate your donation.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }, function (error) {
+                toast.error(`Mail could not be sent, try again later. ${error}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            });
+    }
 
     const MpesaModule = () => {
         return (
@@ -14,8 +63,8 @@ function Donate() {
                     <div className="flex flex-row justify-between">
                         <h3 className="text-gray-700 text-2xl font-semibold">CO-OPERATIVE BANK</h3>
 
-                        <button onClick={() => { setOpenPayments(!openPayments) }} className="shadow-lg hover:bg-red-400  bg-red-600 text-white p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        <button onClick={() => { setOpenPayments(!openPayments) }} className="shadow-lg hover:bg-red-400  bg-red-600 text-white p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                         </button>
                     </div>
@@ -47,6 +96,7 @@ function Donate() {
 
     return (
         <div className="flex flex-col bg-cream">
+            <ToastContainer />
             <div className="w-full flex flex-col h-fit tablet:flex-col desktop:flex-row justify-center items-center">
                 <div className="w-full desktop:w-1/2 tablet:w-full  bg-cream desktop:gap-20 tablet:h-fit tablet:gap-10 gap-10 flex flex-col justify-between items-center py-10">
                     <img src="/graphic.png" className='w-36' alt="" />
@@ -55,8 +105,8 @@ function Donate() {
                         <Link href={'/pages/projects'}>
                             <button className='rounded-full flex flex-row gap-2 items-center justify-center py-1 px-3 text-md desktop:text-lg bg-brown text-cream'>
                                 Our Causes
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" className="w-6 h-6 -rotate-45">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="w-6 h-6 -rotate-45">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
 
                             </button>
@@ -78,25 +128,27 @@ function Donate() {
                 </div>
                 <div className="w-full desktop:w-1/2 desktop:py-10 tablet:w-full bg-[#3C2300] desktop:h-fit h-fit tablet:h-fit relative justify-center items-center flex py-10 tablet:justify-center tablet:flex tablet:py-10">
                     {openPayments ? <MpesaModule /> : null}
-                    <form className="w-11/12 desktop:w-9/12 tablet:w-9/12 bg-white relative p-5 desktop:p-10  top-0 left-0 tablet:top-0 gap-4 flex flex-col tablet:left-0 rounded-md">
+                    <form
+                        onSubmit={handleDonate}
+                        className="w-11/12 desktop:w-9/12 tablet:w-9/12 bg-white relative p-5 desktop:p-10  top-0 left-0 tablet:top-0 gap-4 flex flex-col tablet:left-0 rounded-md">
 
                         <div className="flex flex-col gap-3 text-lg">
                             <label htmlFor="name" className='font-semibold text-lg'>Name</label>
-                            <input type="text" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Full name' />
+                            <input type="text" required ref={nameRef} className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Full name' />
                         </div>
 
                         <div className="flex flex-col gap-3 text-lg">
                             <label htmlFor="email" className='font-semibold text-lg'>Email</label>
-                            <input type="email" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Enter your email' />
+                            <input type="email" required ref={emailRef} className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Enter your email' />
                         </div>
                         <div className="flex flex-col gap-3 text-lg">
                             <label htmlFor="phone" className='font-semibold text-lg'>Phone</label>
-                            <input type="number" className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Phone number' />
+                            <input type="number" required ref={phoneRef} className='w-100 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Phone number' />
                         </div>
                         <div className="flex flex-col gap-3 text-lg">
                             <label htmlFor="name" className='font-semibold text-lg'>Donate</label>
                             <div className="flex flex-row gap-3">
-                                <input type="text" className='w-8/12 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Enter MPESA payment code eg.RQSIFH579' />
+                                <input type="text" required ref={mpesaRef} className='w-8/12 rounded-md ring-1 py-2 pl-7 pr-20 ring-gray-300 text-sm desktop:text-sm px-3 placeholder:text-[#C9C9C9]' placeholder='Enter MPESA payment code eg.RQSIFH579' />
                                 <button type='button' onClick={() => { setOpenPayments(!openPayments) }} className="btn text-sm bg-green-400 rounded text-gray-600 px-4 py-3">SHOW BANK DETAILS</button>
                             </div>
                         </div>
@@ -104,7 +156,7 @@ function Donate() {
                             We really appreciate your kindness and value your contributions. So we keep detailed records of where your money goes to support everyone in need. Feel free to request these records anytime.
                         </p>
                         <div className="flex flex-col desktop:pt-5 justify-start">
-                            <button type='button' className='bg-orange py-3 px-4 w-2/4 rounded-md text-[#25160087] hover:text-cream'>Make Donation</button>
+                            <button type='submit' className='bg-orange py-3 px-4 w-2/4 rounded-md text-[#25160087] hover:text-cream'>Make Donation</button>
                         </div>
                     </form>
                 </div>
@@ -112,20 +164,20 @@ function Donate() {
             <div className="w-full flex desktop:h-[100%] tablet:h-fit  bg-brown justify-center ">
                 <div className="flex flex-col w-11/12 desktop:w-10/12 py-7 gap-4">
                     <span className='flex flex-row gap-4'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 className='text-cream text-xl font-semibold'>1000+ Communities Supported</h3>
                     </span>
                     <span className='flex flex-row gap-4'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 className='text-cream text-xl font-semibold'>500+ children schooled</h3>
                     </span>
                     <span className='flex flex-row gap-4'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 className='text-cream text-xl font-semibold'>120+ wells dug</h3>
                     </span>
