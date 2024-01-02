@@ -1,6 +1,7 @@
-import { ProjectCard } from "@/app/components/Cards/cards";
-import { actualProjects, projects } from "./data";
+import {  ProjectCard } from "@/app/components/Cards/cards";
+import { HomeContentsData, actualProjects, projects } from "./data";
 import Link from "next/link";
+
 
 export default function Page() {
   return <div className="w-full  bg-brown flex items-center flex-col">
@@ -16,7 +17,7 @@ export default function Page() {
       </div>
       <div className="w-full desktop:w-1/2 py-10 desktop:py-0 flex justify-end">
         <p className="text-justify font-extralight text-cream text-sm desktop:text-base w-full desktop:w-3/4">
-        At Hope Center, we believe in the power of unity and compassion to bring about lasting change. Every act of kindness, big or small, creates ripples that extend far beyond the initial gesture. By joining hands with us, you become a beacon of hope, illuminating paths and empowering lives. Together, we can uplift our community, one heart at a time. Your support, your time, and your voice are crucial in weaving a tapestry of change. Let's inspire and be inspired, as we forge a brighter, more inclusive future for all.
+          At Hope Center, we believe in the power of unity and compassion to bring about lasting change. Every act of kindness, big or small, creates ripples that extend far beyond the initial gesture. By joining hands with us, you become a beacon of hope, illuminating paths and empowering lives. Together, we can uplift our community, one heart at a time. Your support, your time, and your voice are crucial in weaving a tapestry of change. Let's inspire and be inspired, as we forge a brighter, more inclusive future for all.
         </p>
       </div>
     </div>
@@ -30,8 +31,8 @@ export default function Page() {
             Help Us Make a Change In the Society for the Better.
           </h3>
           <p className="font-light text-sm desktop:text-md">
-  Unity and compassion are our driving forces at Hope Center. Each act of kindness seeds a brighter future for our community. Join us, and let's turn small ripples into waves of change. Your support is a step toward a better tomorrow.
-</p>
+            Unity and compassion are our driving forces at Hope Center. Each act of kindness seeds a brighter future for our community. Join us, and let's turn small ripples into waves of change. Your support is a step toward a better tomorrow.
+          </p>
 
 
           <Link href={`/pages/donate`}>
@@ -51,14 +52,18 @@ export default function Page() {
       <h2 className="text-white text-4xl font-semibold w-3/4 text-center">We've assisted upwards of 100 at-risk communities.</h2>
       <p className="text-cream text-center font-thin pt-3">We have helped 200+ people and communities survive tough times</p>
     </div>
-    <div class="w-10/12 grid tablet:pb-10 grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 grid-flow-row gap-4">
+    <div class="w-10/12 grid tablet:pb-10 grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-2 gap-y-[5vh] grid-flow-row gap-4">
       {
-        actualProjects.map((project) => (<ProjectCard
-          banner_img={project.banner_img}
-          requested_donations={project.requested_donations}
-          given_donations={project.given_donations}
-          project_name={project.project_name}
-        />))
+        actualProjects.map((project, index) => {
+          return (
+            <ProjectCard
+              banner_img={project.banner_img}
+              requested_donations={project.requested_donations}
+              given_donations={project.given_donations}
+              project_name={project.project_name}
+              project_description={project.project_description}
+            />)
+        })
       }
     </div>
   </div>

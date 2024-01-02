@@ -9,7 +9,7 @@ export const SectionOne = () => {
                     </div>
                 </div>
                 <div className="w-full tablet:w-3/4 desktop:w-8/12 flex flex-col">
-                    <h3 className="text-orange text-3xl font-semibold pb-5">KELVIN’S ENCOUNTERS</h3>
+                    <h3 className="text-orange text-3xl font-semibold pb-5">KEVIN’S ENCOUNTERS</h3>
                     <p className="text-sm w-full tablet:w-11/12 desktop:w-10/12 tablet:text-sm desktop:text-base mobile:text-lg text-justify font-light">
                         The journey started when Kelvin Otieno was in university. He had a
                         habit of coming to Mathare frequently to give sweets to the
@@ -35,7 +35,7 @@ export const SectionOne = () => {
                         university, he started a feeding program in 2017. He would prepare
                         porridge and serve children to at least curb the hunger issues.
                         That’s when Hope Compassion Center was born. So far more than 200
-                        children have benefitext-sm mobile:text-lg text-justify font-lightted
+                        children have benefited
                         from this program.
                     </p>
                 </div>

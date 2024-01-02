@@ -7,7 +7,7 @@ export const ProjectCard = (props) => {
         <div className="w-11/12 hover:scale-105 transition-all ease duration-300 flex flex-col justify-between h-full p-3 gap-1 desktop:gap-3 rounded-md bg-cream">
             <div>
                 <span className="bg-[#251600AB] px-2 w-fit rounded-sm text-brown">{Math.trunc((props.given_donations / props.requested_donations) * 100)}%</span>
-                <img src={props.banner_img} className='w-full desktop:h-[40vh] tablet:h-[20vh] h-[20vh] object-cover' alt="" />
+                <img src={props.banner_img} className='w-full desktop:h-[30vh] tablet:h-[20vh] h-[20vh] object-cover' alt="" />
                 <span className="flex flex-row items-center gap-2 desktop:py-4 text-sm desktop:text-md">
                     <h3 className="text-orange font-bold font-josefin ">DONATIONS :</h3>
                     <h3 className="font-josefin"><b>KES {props.given_donations}</b> / KES {props.requested_donations}</h3>
@@ -15,19 +15,11 @@ export const ProjectCard = (props) => {
                 <h3 className="text-brown text-2xl font-semibold w-11/12">
                     {props.project_name}
                 </h3>
+                <div className="flex text-start">
+                <p className='font-light py-3'>{props.project_description}</p>
             </div>
-
-            {/* Move Link outside of the flex container if it is not behaving as expected with flexbox */}
-            <Link href={'/pages/donate'} className='sticky bottom-0 self-end'>
-
-                <button className="btn text-gray-700 bg-gray-300 hover:bg-slate-300 ps-4 pe-1 py-1 flex flex-row gap-2 rounded-md justify-center items-center w-fit">
-                    DONATE NOW
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </button>
-
-            </Link>
+            </div>
+            
         </div>
     )
 }

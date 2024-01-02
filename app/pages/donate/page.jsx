@@ -85,8 +85,6 @@ function Donate() {
                         <label htmlFor="" className='font-semibold w-1/3'>Acccount No.:</label>
                         <span className="rounded-lg flex flex-row justify-between bg-green-400 px-3 leading-4 py-2 font-light w-2/3">
                             02120245390000
-
-
                         </span>
                     </div>
                 </div>
@@ -162,7 +160,7 @@ function Donate() {
                 </div>
             </div>
             <div className="w-full flex desktop:h-[100%] tablet:h-fit  bg-brown justify-center ">
-                <div className="flex flex-col w-11/12 desktop:w-10/12 py-7 gap-4">
+                {/* <div className="flex flex-col w-11/12 desktop:w-10/12 py-7 gap-4">
                     <span className='flex flex-row gap-4'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="text-white w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -181,7 +179,7 @@ function Donate() {
                         </svg>
                         <h3 className='text-cream text-xl font-semibold'>120+ wells dug</h3>
                     </span>
-                </div>
+                </div> */}
             </div>
         </div>
     )
