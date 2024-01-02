@@ -44,7 +44,7 @@ export const SectionOne = () => {
 
             <div className="flex flex-col tablet:flex-row-reverse justify-between w-full gap-5">
                 <div className="w-full tablet:w-7/12 flex flex-col">
-                    <h3 className="text-orange text-3xl font-semibold pb-5">MATHARI FIRES</h3>
+                    <h3 className="text-orange text-3xl font-semibold pb-5">MATHARE FIRES</h3>
                     <p className="text-sm desktop:text-base text-justify font-light">
                         Mathare slums suffer frequent mysterious fires which pose
                         prevalent risk to properties and the lives of people, children
@@ -88,7 +88,7 @@ export const SectionTwo = () => {
                     src="/vandyke.png" alt="" />
                 <img
                     className="w-full desktop:w-10/12 object-cover rounded-md h-52 tablet:h-[10vh] tablet:w-full desktop:h-[100%]"
-                    src="/construction.png"
+                    src="/sandra_v_dyke.jpg"
                     alt=""
                 />
             </div>
@@ -135,10 +135,10 @@ export const SectionThree = () => {
                 <div className="w-full tablet:w-2/3 grid grid-cols-1 tablet:grid-cols-2 gap-5 items-end">
                     <img
                         className="w-full object-cover rounded-md h-[100%]"
-                        src="/farming.png" alt="" />
+                        src="/elderly_widows_1.jpg" alt="" />
                     <img
                         className="w-full object-cover rounded-md h-[100%]"
-                        src="/farming.png"
+                        src="/elderly_widows_2.jpg"
                         alt=""
                     />
                 </div>

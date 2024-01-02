@@ -26,7 +26,7 @@ export default function Landing() {
             </h1>
             <br />
             <br />
-            <p className="text-sm text-center desktop:text-start tablet:text-sm tablet:text-center desktop:text-lg w-full tablet:w-10/12 font-light">
+            <p className="text-sm text-center desktop:text-start tablet:text-sm tablet:text-center desktop:text-lg desktop:py-10 w-full tablet:w-10/12 font-light">
               At the heart of Hope Compassion Center lies a journey sparked by
               one individual's compassion and fueled by a collective commitment
               to uplift lives. Join us in building a future where hope prevails,
@@ -84,8 +84,8 @@ export default function Landing() {
         </div>
       </section>
       <section className="p-0">
-        <div className="flex flex-col items-start tablet:items-center desktop:items-start desktop:px-20 gap-4 px-5 py-20">
-          <h1 className="text-orange font-semibold desktop:font-bold text-2xl w-11/12 tablet:text-4xl">
+        <div className="flex flex-col items-start tablet:items-center desktop:items-start desktop:px-20 desktop:py-[10vh] gap-4 px-5 py-20">
+          <h1 className="text-orange font-semibold desktop:font-semibold text-2xl w-11/12 tablet:text-4xl desktop:text-6xl">
             Building Hope, Nurturing dreams and empowering communities together.
           </h1>
 

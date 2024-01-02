@@ -66,10 +66,10 @@ function About() {
 
             <div className="flex flex-row justify-between items-baseline">
               <div className="flex flex-row gap-3">
-                <img src="" className="rounded-full h-[6vh] w-[6vh] bg-slate-400 object-cover" alt="" />
+                <img src="/kevin.jpg" className="object-top rounded-full h-[6vh] w-[6vh] bg-slate-400 object-cover" alt="" />
                 <div className="flex flex-col">
                   <h3>Founder</h3>
-                  <h3>Kelvin Otieno</h3>
+                  <a target="_blank" href="https://www.facebook.com/kevin.otieno.33" className="hover:underline"><h3>Kelvin Otieno</h3></a>
                 </div>
               </div>
               <img src="/sign.png" className="w-1/4 object-cover" alt="" />
