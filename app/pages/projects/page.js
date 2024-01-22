@@ -3,9 +3,15 @@ import { ProjectCard } from "@/app/components/Cards/cards";
 import { HomeContentsData, actualProjects, projects } from "./data";
 import Link from "next/link";
 import { useState } from "react";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { TbPlayFootball } from "react-icons/tb";
+import { GiBabyfootPlayers } from "react-icons/gi";
+import { IoIosSchool } from "react-icons/io";
+import { MdElderlyWoman } from "react-icons/md";
 
 
-const CtgCard = ({ title, selected, setFunction, index }) => {
+
+const CtgCard = ({ title, selected, setFunction, index, Icon }) => {
   return (
     <div
       onMouseOver={() => setFunction(index)}
@@ -17,9 +23,7 @@ const CtgCard = ({ title, selected, setFunction, index }) => {
       }
 
       <div className="rounded-full w-10 h-10 bg-white justify-center items-center flex object-contain p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-full h-full">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-        </svg>
+        <Icon />
 
       </div>
       <h3 className="text-brown text-2xl font-medium">{title}</h3>
@@ -27,19 +31,22 @@ const CtgCard = ({ title, selected, setFunction, index }) => {
   )
 }
 
-const ContentCard = ({ content, images }) => {
+const icons = [IoIosSchool, MdElderlyWoman, GiTakeMyMoney, TbPlayFootball]
+
+const ContentCard = ({ content, images, title }) => {
   return (
     <div className="w-full flex flex-col gap-10 p-5">
+      <h3 className="text-brown text-4xl font-medium ps-5">{title}</h3>
       <p className="w-full text-xl font-light ps-5 ">
         {content}
       </p>
       <div class="grid grid-cols-3 md:grid-cols-3 gap-3 px-4">
         {
-          images.map((img) =>{
+          images.map((img) => {
             console.log(img.src)
             return (
               <div>
-                <img class="h-auto max-w-full rounded-lg" src={img.src} alt="" />
+                <img class="w-full object-cover h-52 rounded-lg" src={img.src} alt="" />
               </div>
             )
           })
@@ -79,17 +86,21 @@ export default function Page() {
         <h2 className="text-brown text-4xl font-semibold w-3/4 text-center">We've assisted upwards of 100 at-risk communities.</h2>
         <p className="text-black text-center font-thin pt-3">We have helped 200+ people and communities survive tough times</p>
       </div>
-      <hr className="w-3/4 bg-brown h-[1.5px]" />
-      <div className="flex flex-row w-3/4 justify-between">
-        <div className="w-1/2 flex flex-col">
+      <hr className="w-10/12 bg-brown h-[1.5px]" />
+      <div className="flex flex-row w-10/12 justify-between">
+        <div className="w-4/12 flex flex-col">
           {
             actualProjects.map((project, index) => (
-              <CtgCard title={project.project_name} selected={index == selected} index={index} setFunction={toggleSelected} />
+              <CtgCard title={project.project_name} selected={index == selected} index={index} setFunction={toggleSelected} Icon={icons[index]} />
             ))
           }
         </div>
-        <div className="w-1/2">
-          <ContentCard content={actualProjects[selected].project_description} images={actualProjects[selected].project_images} />
+        <div className="w-8/12">
+          <ContentCard
+            content={actualProjects[selected].project_description}
+            images={actualProjects[selected].project_images}
+            title={actualProjects[selected].project_name}
+          />
         </div>
 
       </div>

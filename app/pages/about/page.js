@@ -96,7 +96,7 @@ function About() {
             buttons.map((btn, index) => (
               <button
                 onClick={() => { setSelected(index) }}
-                className={`ring-1 ring-orange ${selected == index ? 'bg-orange text-cream ' : 'bg-brown text-orange'} z-[2] w-2/12 hover:bg-orange_light hover:text-gray-300 hover:scale-105 transition-all ease-in-expo rounded-full tablet:rounded py-2 uppercase `}>
+                className={`ring-1 ring-orange ${selected >= index ? 'bg-orange text-cream ' : 'bg-brown text-orange'} z-[2] w-2/12 hover:bg-orange_light hover:text-gray-300 hover:scale-105 transition-all ease-in-expo rounded-full tablet:rounded-full py-2 uppercase `}>
                 <p className="hidden tablet:block">{btn.toString()}</p>
                 <p className="block tablet:hidden">{index + 1}</p>
               </button>
