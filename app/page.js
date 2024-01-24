@@ -12,10 +12,9 @@ export default function Landing() {
         <div
           className="w-full h-8 bg-cover"
           style={{
-            background: `url('Banner.png')`
+            background: `url('Banner.png')`,
           }}
-        >
-        </div>
+        ></div>
         <div
           style={{ minHeight: "70vh" }}
           className="w-full flex desktop:flex-row flex-col justify-center relative py-5 tablet:py-20 px-3 tablet:px-5 tablet:gap-5 desktop:px-20"
@@ -33,11 +32,23 @@ export default function Landing() {
               dreams flourish, and communities thrive. Together, we make a
               lasting difference, one step at a time.
             </p>
-            <Link href={'/pages/about'}>
+            <Link href={"/pages/about"}>
               <button className=" bg-orange rounded-md py-2 px-5 gap-3 flex flex-row items-center justify-center text-white text-lg my-8">
                 More About us
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  data-slot="icon"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                  />
                 </svg>
               </button>
             </Link>
@@ -50,12 +61,15 @@ export default function Landing() {
               backgroundSize: "cover",
               border: "solid 12px #251600a1",
               borderRadius: "10px",
-            }}></div>
-          <img src="/sun.svg" className="w-[5vh] tablet:w-[10vh] top-[1%] tablet:top-[0%] left-[2%] absolute " alt="" />
+            }}
+          ></div>
+          <img
+            src="/sun.svg"
+            className="w-[5vh] tablet:w-[10vh] top-[1%] tablet:top-[0%] left-[2%] absolute "
+            alt=""
+          />
           {/* <img src="/butterflies.png" className="w-[5vh] tablet:w-[10vh] desktop:bottom-0 bottom-0 tablet:top-[0%] left-[2%] absolute " alt="" /> */}
-
         </div>
-
       </section>
       <section className="bg-brown text-cream flex flex-col p-5 desktop:p-20">
         <div className="flex flex-col items-center justify-center">
@@ -74,13 +88,9 @@ export default function Landing() {
           </p>
         </div>
         <div className="grid grid-cols-1 tablet:grid-cols-2 gap-y-10 place-items-center pt-20">
-          {
-            HomeContentsData.map((item) => (
-              <HomeProjectCard
-                item={item}
-              />
-            ))
-          }
+          {HomeContentsData.map((item) => (
+            <HomeProjectCard item={item} />
+          ))}
         </div>
       </section>
       <section className="p-0">
@@ -93,11 +103,23 @@ export default function Landing() {
             {" "}
             Our story begins in 2020 in the Mathare Slums of Nairobi Kenya.
           </p>
-          <Link className="hover:text-orange" href={"/about"}>
+          <Link className="hover:text-orange" href={"/pages/about"}>
             <button className="btn rounded-full bg-brown text-cream flex flex-row px-3 py-1 gap-2">
               Learn More
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" className="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                data-slot="icon"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
               </svg>
             </button>
           </Link>
@@ -121,7 +143,6 @@ export default function Landing() {
           </h1>
           <iframe
             className="rounded-md mb-2 aspect-video w-full tablet:w-3/4"
-
             src="https://www.youtube.com/embed/vBDMQhZv8UI?si=UlSgDKIzl9XnRXK4&amp;controls=0"
             title="YouTube video player"
             frameborder="0"
