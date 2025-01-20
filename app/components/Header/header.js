@@ -1,35 +1,14 @@
 "use client";
-
-import react from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import styles from "./header.module.css";
-// import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
-
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   // Function to set isOpen to false on route change
-  //   const handleRouteChange = () => {
-  //     setIsOpen(false);
-  //     console.log('Route is changing, setting isOpen to false');
-  //   };
-
-  //   // Listen for route changes
-  //   router.events.on('routeChangeStart', handleRouteChange);
-
-  //   // Clean up the listener when the component is unmounted
-  //   return () => {
-  //     router.events.off('routeChangeStart', handleRouteChange);
-  //   };
-  // }, [router.events]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,6 +44,12 @@ const Header = () => {
             <Link className={styles.link} href="/pages/projects">
               {" "}
               Projects
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="/pages/gallery">
+              {" "}
+              Gallery
             </Link>
           </li>
           <li>
@@ -120,6 +105,12 @@ const Header = () => {
             <Link className={styles.link} href="/pages/projects">
               {" "}
               Projects
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} href="/pages/gallery">
+              {" "}
+              Gallery
             </Link>
           </li>
           <li>

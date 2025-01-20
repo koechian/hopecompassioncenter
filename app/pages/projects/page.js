@@ -22,7 +22,7 @@ const CtgCard = ({ title, selected, setFunction, index, Icon }) => {
         <div className="flex flex-row justify-center items-center gap-3">
           {
             selected ? <svg width="97" height="41" viewBox="0 0 97 41" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 hidden desktop:flex">
-              <path d="M0 20.5999H96.5001M96.5001 20.5999C88.2223 19.9323 71.6001 15.0776 71.3334 1M96.5001 20.5999C88.1112 21.2675 71.3334 26.1794 71.3334 40.4859" stroke="#251600" stroke-width="4" />
+              <path d="M0 20.5999H96.5001M96.5001 20.5999C88.2223 19.9323 71.6001 15.0776 71.3334 1M96.5001 20.5999C88.1112 21.2675 71.3334 26.1794 71.3334 40.4859" stroke="#251600" strokeWidth="4" />
             </svg> : null
           }
 

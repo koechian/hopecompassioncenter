@@ -1,8 +1,4 @@
-import react from "react";
-import Image from "next/image";
-import Header from "./components/Header/header";
 import Link from "next/link";
-import Footer from "./components/Footer/footer";
 import { HomeContentsData } from "./pages/projects/data";
 import { HomeProjectCard } from "./components/Cards/cards";
 export default function Landing() {
@@ -39,14 +35,13 @@ export default function Landing() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   data-slot="icon"
-                  class="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
                   />
                 </svg>
@@ -88,8 +83,8 @@ export default function Landing() {
           </p>
         </div>
         <div className="grid grid-cols-1 tablet:grid-cols-2 gap-y-10 place-items-center pt-20">
-          {HomeContentsData.map((item) => (
-            <HomeProjectCard item={item} />
+          {HomeContentsData.map((item, index) => (
+            <HomeProjectCard key={index} item={item} />
           ))}
         </div>
       </section>
@@ -110,14 +105,14 @@ export default function Landing() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 data-slot="icon"
                 className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
@@ -145,9 +140,8 @@ export default function Landing() {
             className="rounded-md mb-2 aspect-video w-full tablet:w-3/4"
             src="https://www.youtube.com/embed/vBDMQhZv8UI?si=UlSgDKIzl9XnRXK4&amp;controls=0"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       </section>
