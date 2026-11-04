@@ -5,6 +5,22 @@ ErrorDocument 404 /404.html
 # Do not list directory contents such as /_next/static/media/.
 Options -Indexes
 
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve the public domain over HTTPS only.
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} ^(www\.)?hopecompassioncenter\.com$ [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Addresses from the previous site structure.
+  RewriteRule ^pages/about/?$ /about/ [L,R=301]
+  RewriteRule ^pages/projects/?$ /programmes/ [L,R=301]
+  RewriteRule ^pages/gallery/?$ /gallery/ [L,R=301]
+  RewriteRule ^pages/donate/?$ /partner-with-us/ [L,R=301]
+  RewriteRule ^pages/contact/?$ /contact/ [L,R=301]
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php80” package as the default “PHP” programming language.
 <IfModule mime_module>

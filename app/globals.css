@@ -1,32 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Josefin+Slab:wght@300&display=swap");
-
 @import "tailwindcss";
 
+/* Brand palette from the revamp brief. Gold is decorative only: it fails contrast as text on light backgrounds. */
 @theme {
-  /* Only the site's own breakpoints exist; sm/md/lg/xl are deliberately unset. */
-  --breakpoint-*: initial;
-  --breakpoint-mobile: 475px;
-  --breakpoint-tablet: 640px;
-  --breakpoint-laptop: 1024px;
-  --breakpoint-desktop: 1280px;
+  --color-forest: #244c38;
+  --color-forest-deep: #1a3829;
+  --color-cream: #f8efe3;
+  --color-cream-deep: #efe2cf;
+  --color-gold: #d3a64f;
+  --color-rust: #b93819;
+  --color-rust-deep: #9a2e14;
+  --color-charcoal: #353b35;
 
-  --color-brown: #251600;
-  --color-cream: #edf1dd;
-  --color-orange: #ff6803;
-  --color-orange_light: #eb5c31;
-
-  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Tailwind v3 base defaults that v4 changed, kept so the site renders as before. */
+@theme inline {
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-forest);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   input,
@@ -35,41 +48,36 @@
     background-color: var(--color-white);
   }
 
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--color-gray-400);
-  }
-
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-}
 
-:root {
-  --foreground-brown: #251600;
-  --background-cream: #edf1dd;
-  --secondary-orange: #edf1dd;
-  --secondary-green: #003e1f;
-}
-
-/* Tailwind v4 puts utilities in a cascade layer, so these element rules
-   must sit in the base layer or they would override utility classes. */
-@layer base {
-  html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  :focus-visible {
+    outline: 2px solid var(--color-rust);
+    outline-offset: 2px;
   }
-  section {
-    width: 100%;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
   }
 }
 
-@utility font-josefin {
-  font-family: "Josefin Slab", sans-serif;
-}
+@utility container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
 
-@utility bg-blur {
-  backdrop-filter: blur(3px);
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
 }

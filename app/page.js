@@ -1,150 +1,265 @@
 import Link from "next/link";
-import { HomeContentsData } from "./pages/projects/data";
-import { HomeProjectCard } from "./components/Cards/cards";
-export default function Landing() {
+import { LuArrowRight } from "react-icons/lu";
+import { home } from "@/content/home";
+import { impactFigures, programmes } from "@/content/programmes";
+import { values } from "@/content/values";
+import { galleryPhotos } from "@/content/gallery";
+import { newsPosts } from "@/content/news";
+import ButtonLink from "./components/ButtonLink";
+import CallToAction from "./components/CallToAction";
+import Icon from "./components/Icon";
+import NewsCard from "./components/NewsCard";
+import SectionHeading from "./components/SectionHeading";
+
+const galleryPreviewSources = [
+  "/photos/kids_center_1.jpg",
+  "/photos/eating.jpg",
+  "/photos/women_empowerment.jpg",
+  "/photos/sports_4.jpg",
+  "/photos/migori.jpg",
+  "/photos/december_2024_22.jpg",
+];
+const galleryPreview = galleryPreviewSources.map((src) => galleryPhotos.find((photo) => photo.src === src));
+const communityStories = newsPosts.filter((post) => post.category === "Community Stories").slice(0, 3);
+const latestPosts = newsPosts.slice(0, 3);
+
+function Hero() {
+  const { headline, paragraphs, image } = home.hero;
   return (
-    <div className="bg-cream">
-      <section className="flex flex-col relative">
-        <div
-          className="w-full h-8 bg-cover"
-          style={{
-            background: `url('Banner.png')`,
-          }}
-        ></div>
-        <div
-          style={{ minHeight: "70vh" }}
-          className="w-full flex desktop:flex-row flex-col justify-center relative py-5 tablet:py-20 px-3 tablet:px-5 tablet:gap-5 desktop:px-20"
-        >
-          <div className="p-2 desktop:pt-9 w-full justify-center items-center flex flex-col desktop:items-start tablet:w-full desktop:w-1/2 z-[3] tablet:flex tablet:flex-col tablet:justify-center tablet:items-center">
-            <h1 className="text-4xl text-center tablet:text-3xl tablet:text-center desktop:text-start desktop:text-6xl font-semibold w-full tablet:w-10/12">
-              Transforming Lives, One Act of Compassion at a time
-            </h1>
-            <br />
-            <br />
-            <p className="text-sm text-center desktop:text-start tablet:text-sm tablet:text-center desktop:text-lg desktop:py-10 w-full tablet:w-10/12 font-light">
-              At the heart of Hope Compassion Center lies a journey sparked by
-              one individual's compassion and fueled by a collective commitment
-              to uplift lives. Join us in building a future where hope prevails,
-              dreams flourish, and communities thrive. Together, we make a
-              lasting difference, one step at a time.
+    <section className="relative overflow-hidden">
+      <div className="container-page grid items-center gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:gap-14 lg:py-20">
+        <div>
+          <p className="mb-4 text-xs font-bold tracking-[0.18em] text-rust uppercase">Community Development · Nairobi, Kenya</p>
+          <h1 className="text-4xl leading-[1.08] font-semibold sm:text-5xl lg:text-[3.4rem]">{headline}</h1>
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="mt-5 text-lg text-charcoal/85">
+              {paragraph}
             </p>
-            <Link href={"/pages/about"}>
-              <button className=" bg-orange rounded-md py-2 px-5 gap-3 flex flex-row items-center justify-center text-white text-lg my-8">
-                More About us
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  data-slot="icon"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </button>
-            </Link>
+          ))}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href="/programmes/">Explore Our Programmes</ButtonLink>
+            <ButtonLink href="/partner-with-us/" variant="outline">
+              Partner With Us
+            </ButtonLink>
           </div>
-          <div
-            className="tablet:w-full desktop:w-1/2 tablet:h-[35vh] h-[25vh] desktop:h-[inherit] border-none! ring-4 ring-[#251600a1]"
-            style={{
-              position: "relative",
-              backgroundImage: "url(/hero.jpg)",
-              backgroundSize: "cover",
-              border: "solid 12px #251600a1",
-              borderRadius: "10px",
-            }}
-          ></div>
-          <img
-            src="/sun.svg"
-            className="w-[5vh] tablet:w-[10vh] top-[1%] tablet:top-[0%] left-[2%] absolute "
-            alt=""
-          />
         </div>
-      </section>
-      <section className="bg-brown text-cream flex flex-col p-5 desktop:p-20">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-center w-full desktop:w-1/2 text-4xl font-semibold">
-            Take a look at some of our
-            <br />
-            ongoing and completed Projects
-          </h1>
-          <br />
-          <br />
-          <p className="text-center w-full desktop:w-1/2 desktop:text-md text-sm font-light">
-            From feeding over 200 children in Mathare to providing safe spaces
-            for young minds, empowering the youth through skill development, and
-            supporting elderly women in Migori, our impact resonates through
-            transformative actions that span across generations.
-          </p>
+        <div className="relative">
+          <div aria-hidden="true" className="absolute -right-4 -bottom-4 h-2/3 w-2/3 rounded-3xl bg-gold/40" />
+          <img src={image.src} alt={image.alt} className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lg" />
         </div>
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-y-10 place-items-center pt-20">
-          {HomeContentsData.map((item, index) => (
-            <HomeProjectCard key={index} item={item} />
+      </div>
+    </section>
+  );
+}
+
+function WhoWeAre() {
+  const { title, paragraphs } = home.whoWeAre;
+  return (
+    <section className="bg-white">
+      <div className="container-page grid gap-8 py-16 lg:grid-cols-[1fr_1.5fr] lg:gap-16 lg:py-24">
+        <div>
+          <SectionHeading eyebrow="About Us" title={title} />
+          <ButtonLink href="/about/" variant="outline" className="mt-8">
+            About Us
+          </ButtonLink>
+        </div>
+        <div className="space-y-5 text-lg text-charcoal/85">
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)}>{paragraph}</p>
           ))}
         </div>
-      </section>
-      <section className="p-0">
-        <div className="flex flex-col items-start tablet:items-center desktop:items-start desktop:px-20 desktop:py-[10vh] gap-4 px-5 py-20">
-          <h1 className="text-orange font-semibold desktop:font-semibold text-2xl w-11/12 tablet:text-4xl desktop:text-6xl">
-            Building Hope, Nurturing dreams and empowering communities together.
-          </h1>
+      </div>
+    </section>
+  );
+}
 
-          <p className="w-11/12 m-0 font-light">
-            {" "}
-            Our story begins in 2020 in the Mathare Slums of Nairobi Kenya.
-          </p>
-          <Link className="hover:text-orange" href={"/pages/about"}>
-            <button className="btn rounded-full bg-brown text-cream flex flex-row px-3 py-1 gap-2">
-              Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                data-slot="icon"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+function Impact() {
+  const { eyebrow, title, introduction } = home.impact;
+  return (
+    <section className="bg-forest">
+      <div className="container-page py-16 lg:py-20">
+        <SectionHeading eyebrow={eyebrow} title={title} introduction={introduction} tone="light" />
+        <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+          {impactFigures.map((figure) => (
+            <div key={figure.label} className="flex flex-col bg-forest p-6">
+              <dt className="order-2 mt-2 font-semibold text-white">{figure.label}</dt>
+              <dd className="order-1 font-display text-5xl font-semibold text-gold">{figure.value}</dd>
+              <dd className="order-3 mt-2 text-sm text-white/75">{figure.detail}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
+function Programmes() {
+  return (
+    <section>
+      <div className="container-page py-16 lg:py-24">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading eyebrow="Our Programmes" title="Five areas of work, one commitment to people" />
+          <ButtonLink href="/programmes/" variant="outline" className="shrink-0">
+            Explore Our Programmes
+          </ButtonLink>
+        </div>
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {programmes.map((programme) => (
+            <li key={programme.id} className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-forest/10">
+              <div className="aspect-[3/2] overflow-hidden">
+                <img
+                  src={programme.image.src}
+                  alt={programme.image.alt}
+                  loading="lazy"
+                  className="size-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"
                 />
-              </svg>
-            </button>
-          </Link>
-          <div
-            className="hidden desktop:block tablet:w-28!"
-            style={{
-              position: "absolute",
-              right: "4%",
-              height: "190px",
-              width: "190px",
-              background: "url(holdinghands.png)",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-        </div>
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-xl leading-snug font-semibold">{programme.title}</h3>
+                <p className="mt-3 flex-1 text-charcoal/80">{programme.summary}</p>
+                <Link
+                  href={`/programmes/#${programme.id}`}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-rust after:absolute after:inset-0 hover:underline"
+                >
+                  Learn more<span className="sr-only"> about {programme.title}</span>
+                  <LuArrowRight aria-hidden="true" className="size-4" />
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
-        <div className="flex flex-col items-center bg-zinc-50 desktop:p-10 p-5">
-          <h1 className="text-center text-orange text-4xl font-semibold p-5">
-            Meet our founder
-          </h1>
-          <iframe
-            className="rounded-md mb-2 aspect-video w-full tablet:w-3/4"
-            src="https://www.youtube.com/embed/vBDMQhZv8UI?si=UlSgDKIzl9XnRXK4&amp;controls=0"
-            title="Meet our founder"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+function OurStory() {
+  const { title, paragraphs, image } = home.story;
+  return (
+    <section className="bg-cream-deep">
+      <div className="container-page grid items-center gap-10 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
+        <img src={image.src} alt={image.alt} loading="lazy" className="aspect-[4/5] w-full max-w-md rounded-3xl object-cover shadow-md lg:justify-self-center" />
+        <div>
+          <SectionHeading eyebrow="Since 2017" title={title} />
+          <div className="mt-6 space-y-5 text-lg text-charcoal/85">
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+            ))}
+          </div>
+          <ButtonLink href="/about/#founder" className="mt-8">
+            Read Our Story
+          </ButtonLink>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+  );
+}
+
+function Values() {
+  return (
+    <section className="bg-white">
+      <div className="container-page py-16 lg:py-24">
+        <SectionHeading eyebrow="What Guides Us" title="Our Values" align="center" />
+        <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((value) => (
+            <li key={value.name} className="flex gap-4">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-cream text-forest">
+                <Icon name={value.icon} className="size-6" />
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold">{value.name}</h3>
+                <p className="mt-1 text-charcoal/80">{value.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function PostsSection({ eyebrow, title, posts, action }) {
+  return (
+    <section>
+      <div className="container-page py-16 lg:py-24">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading eyebrow={eyebrow} title={title} />
+          <ButtonLink href="/news/" variant="outline" className="shrink-0">
+            {action}
+          </ButtonLink>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {posts.map((post) => (
+            <NewsCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryPreview() {
+  return (
+    <section>
+      <div className="container-page py-16 lg:py-24">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading eyebrow="Gallery" title="Moments from our community" />
+          <ButtonLink href="/gallery/" variant="outline" className="shrink-0">
+            View Gallery
+          </ButtonLink>
+        </div>
+        <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {galleryPreview.map((photo) => (
+            <li key={photo.src} className="aspect-square overflow-hidden rounded-xl sm:aspect-[4/3]">
+              <img src={photo.src} alt={photo.caption} loading="lazy" className="size-full object-cover" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Partnerships() {
+  const { title, text } = home.partnerships;
+  return (
+    <section className="bg-cream-deep">
+      <div className="container-page flex flex-col items-start gap-8 py-16 md:flex-row md:items-center md:justify-between lg:py-20">
+        <div className="max-w-2xl">
+          <SectionHeading eyebrow="Working Together" title={title} />
+          <p className="mt-4 text-lg text-charcoal/85">{text}</p>
+        </div>
+        <ButtonLink href="/partner-with-us/" className="shrink-0">
+          Partner With Us
+        </ButtonLink>
+      </div>
+    </section>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <WhoWeAre />
+      <Impact />
+      <Programmes />
+      <OurStory />
+      <Values />
+      {communityStories.length > 0 && (
+        <PostsSection eyebrow="Stories of Change" title="Stories from the communities we serve" posts={communityStories} action="Read More Stories" />
+      )}
+      <GalleryPreview />
+      <Partnerships />
+      {latestPosts.length > 0 && (
+        <PostsSection eyebrow="Latest Updates" title="News from Hope Compassion Center" posts={latestPosts} action="View News & Stories" />
+      )}
+      <CallToAction
+        title={home.getInvolved.title}
+        text={home.getInvolved.text}
+        action="Get Involved"
+        href="/partner-with-us/"
+      />
+    </>
   );
 }

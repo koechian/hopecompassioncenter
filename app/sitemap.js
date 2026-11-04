@@ -1,9 +1,10 @@
+import { navigation, site } from "@/content/site";
+import { newsPosts } from "@/content/news";
+
 export const dynamic = "force-static";
 
-const routes = ["", "/pages/about", "/pages/projects", "/pages/gallery", "/pages/donate", "/pages/contact"];
-
 export default function sitemap() {
-  return routes.map((route) => ({
-    url: `https://hopecompassioncenter.com${route}/`,
-  }));
+  const pages = navigation.map((item) => ({ url: `${site.url}${item.href}` }));
+  const posts = newsPosts.map((post) => ({ url: `${site.url}/news/${post.slug}/`, lastModified: post.date }));
+  return [...pages, ...posts];
 }
