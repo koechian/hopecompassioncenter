@@ -1,11 +1,9 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
+# Every route is exported as <route>/index.html, so Apache serves pages
+# directly and only unknown paths need handling.
+ErrorDocument 404 /404.html
+
+# Do not list directory contents such as /_next/static/media/.
+Options -Indexes
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php80” package as the default “PHP” programming language.

@@ -6,6 +6,51 @@ import styles from "./header.module.css";
 import { useState, useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
+const SideNav = () => {
+  return (
+    <div className={" desktop:hidden tablet:w-1/2 tablet:right-0 w-[100%] p-4 flex flex-col absolute bg-white top-[100%]"}>
+      <ul className="flex flex-col gap-4 w-full justify-center tablet:items-start tablet:px-10 items-center">
+        <li>
+          <Link href='/'>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.link} href="/pages/about">
+            {" "}
+            About
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.link} href="/pages/projects">
+            {" "}
+            Projects
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.link} href="/pages/gallery">
+            {" "}
+            Gallery
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.link} href="/pages/contact">
+            {" "}
+            Contacts
+          </Link>
+        </li>
+        <li className="w-full">
+          <Link href={'/pages/donate'} className="tablet:hidden w-full flex" >
+            <button className="w-full py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
+              Donate
+            </button>
+          </Link>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
@@ -19,62 +64,16 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-  });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function toggleSideNav() {
     setIsOpen(!isOpen)
   }
 
-  const SideNav = () => {
-    return (
-      <div className={" desktop:hidden tablet:w-1/2 tablet:right-0 w-[100%] p-4 flex flex-col absolute bg-white top-[100%]"}>
-        <ul className="flex flex-col gap-4 w-full justify-center tablet:items-start tablet:px-10 items-center">
-          <li>
-            <Link href='/'>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/pages/about">
-              {" "}
-              About
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/pages/projects">
-              {" "}
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/pages/gallery">
-              {" "}
-              Gallery
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.link} href="/pages/contact">
-              {" "}
-              Contacts
-            </Link>
-          </li>
-          <li className="w-full">
-            <Link href={'/pages/donate'} className="tablet:hidden w-full flex" >
-              <button className="w-full py-2 px-3 bg-orange rounded-md p-4 text-white  scale-1.1 cursor-pointer">
-                Donate
-              </button>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    )
-  }
-
   return (
     <nav
-      className={[`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`].join(
-        " !px-0 "
-      )}
+      className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}
     >
       <div className={inter.className}>
         <div className="logo-image w-1/2 desktop:w-2/3">
@@ -122,7 +121,7 @@ const Header = () => {
         </ul>
         <button
           onClick={toggleSideNav}
-          className="desktop:hidden ring-1 rounded-md px-3 hover:bg-slate-300">
+          className="desktop:hidden ring-1 ring-blue-500/50 rounded-md px-3 hover:bg-slate-300">
           {!isOpen
             ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" data-slot="icon" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

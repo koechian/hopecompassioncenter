@@ -1,6 +1,6 @@
 'use client'
 import { ProjectCard } from "@/app/components/Cards/cards";
-import { HomeContentsData, actualProjects, projects } from "./data";
+import { actualProjects } from "./data";
 import Link from "next/link";
 import { useState } from "react";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -41,10 +41,9 @@ const CtgCard = ({ title, selected, setFunction, index, Icon }) => {
         <div className="grid grid-cols-2 tablet:grid-cols-3 gap-2 tablet:gap-5 pt-5">
         {
           actualProjects[index].project_images.map((img) => {
-            console.log(img.src)
             return (
-              <div>
-                <img class="w-full object-cover h-32 tablet:h-44 rounded-lg" src={img.src} alt="" />
+              <div key={img.src}>
+                <img className="w-full object-cover h-32 tablet:h-44 rounded-lg" src={img.src} alt="" />
               </div>
             )
           })
@@ -65,13 +64,12 @@ const ContentCard = ({ content, images, title }) => {
       <p className="w-full text-xl font-light ps-5 ">
         {content}
       </p>
-      <div class="grid grid-cols-3 md:grid-cols-3 gap-3 px-4">
+      <div className="grid grid-cols-3 gap-3 px-4">
         {
           images.map((img) => {
-            console.log(img.src)
             return (
-              <div>
-                <img class="w-full object-cover h-52 rounded-lg" src={img.src} alt="" />
+              <div key={img.src}>
+                <img className="w-full object-cover h-52 rounded-lg" src={img.src} alt="" />
               </div>
             )
           })
@@ -116,7 +114,7 @@ export default function Page() {
         <div className="w-full desktop:w-4/12 flex flex-col">
           {
             actualProjects.map((project, index) => (
-              <CtgCard title={project.project_name} selected={index == selected} index={index} setFunction={toggleSelected} Icon={icons[index]} />
+              <CtgCard key={project.project_name} title={project.project_name} selected={index == selected} index={index} setFunction={toggleSelected} Icon={icons[index]} />
             ))
           }
         </div>

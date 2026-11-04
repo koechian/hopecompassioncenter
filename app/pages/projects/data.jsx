@@ -17,44 +17,10 @@ import sports_5 from './project_images/sports_5.jpg'
 
 import elderly_1 from './project_images/elderly_1.jpg'
 import elderly_2 from './project_images/elderly_2.jpg'
-import elderly_3 from './project_images/elderly_3.jpg'
 import elderly_4 from './project_images/elderly_4.jpg'
 import elderly_5 from './project_images/migori_event_2.jpg'
 import elderly_6 from './project_images/migori_ladies_2.jpg'
 import elderly_7 from './project_images/migori_ladies_3.jpg'
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const projects = [
-    {
-        banner_img: '/rescue.jpg',
-        requested_donations: 150000,
-        given_donations: 50000,
-        project_name: 'COVID-19 rescue mission in thindigua.'
-    },
-    {
-        banner_img: '/rescue.jpg',
-        requested_donations: 150000,
-        given_donations: 50000,
-        project_name: 'COVID-19 rescue mission in thindigua.'
-    },
-    {
-        banner_img: '/rescue.jpg',
-        requested_donations: 150000,
-        given_donations: 15000,
-        project_name: 'COVID-19 rescue mission in thindigua.'
-    },
-]
 
 export const HomeContentsData = [
     {

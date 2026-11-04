@@ -1,9 +1,9 @@
 export const SectionOne = () => {
     return (
-        <div className="flex flex-col gap-20 py-0 tablet:py-10 !text-cream justify-center items-center">
-            <div className="flex flex-col-reverse tablet:flex-row-reverse justify-between gap-3 justify-baseline py-10">
-                <div className="w-full tablet:w-1/4 desktop:w-4/12 h-[initial] justify-baseline items-center flex flex-col">
-                    <img src="/story.png" className="w-full tablet:w-full desktop:w-3/4 h-[30vh] desktop:h-fit object-cover" alt="" />
+        <div className="flex flex-col gap-20 py-0 tablet:py-10 text-cream! justify-center items-center">
+            <div className="flex flex-col-reverse tablet:flex-row-reverse justify-between gap-3 py-10">
+                <div className="w-full tablet:w-1/4 desktop:w-4/12 h-[initial] items-center flex flex-col">
+                    <img src="/story.webp" className="w-full tablet:w-full desktop:w-3/4 h-[30vh] desktop:h-fit object-cover" alt="" />
                     <div className="flex flex-row justify-center w-full items-center py-4">
                         <span className="w-1/4 bg-orange h-1"></span>
                     </div>
@@ -63,7 +63,7 @@ export const SectionOne = () => {
                 <div className="flex w-full tablet:w-5/12 h-[inherit] items-center justify-start">
                     <img
                         className="w-full tablet:w-10/12  h-[inherit] justify-center flex"
-                        src="/fire.png"
+                        src="/fire.webp"
                         alt=""
                     />
                 </div>
@@ -85,7 +85,7 @@ export const SectionTwo = () => {
             <div className="w-full tablet:w-1/3 desktop:w-2/3 grid desktop:grid-cols-2 tablet:grid-cols-1 grid-cols-2 gap-5 items-end">
                 <img
                     className="w-full object-cover tablet:pb-2 rounded-md h-[100%] tablet:h-[10vh] tablet:w-full desktop:h-[100%]"
-                    src="/vandyke.png" alt="" />
+                    src="/vandyke.webp" alt="" />
                 <img
                     className="w-full desktop:w-10/12 object-cover rounded-md h-52 tablet:h-[10vh] tablet:w-full desktop:h-[100%]"
                     src="/sandra_v_dyke.jpg"
@@ -111,7 +111,7 @@ export const SectionThree = () => {
                 <div className="w-full py-3 tablet:py-0 tablet:w-1/3 flex">
                     <img
                         className="w-full object-cover rounded-md h-[100%]"
-                        src="/football.png"
+                        src="/football.webp"
                         alt=""
                     />
                 </div>
@@ -177,7 +177,7 @@ export const SectionFour = () => {
                 <div className="w-full tablet:w-1/2 flex flex-col items-end gap-3">
                     <img
                         className="w-full desktop:w-11/12 rounded-md h-52 desktop:h-96 object-cover"
-                        src="/childcare.png"
+                        src="/childcare.webp"
                         alt=""
                     />
                     <small className="text-cream">The Childcare Center, finally complete</small>

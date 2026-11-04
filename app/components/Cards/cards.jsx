@@ -6,7 +6,7 @@ export const ProjectCard = (props) => {
         // Add 'flex flex-col justify-between h-full' to make sure the card stretches full height and pushes the button to the bottom
         <div className="w-11/12 hover:scale-105 transition-all ease duration-300 flex flex-col justify-between h-full p-3 gap-1 desktop:gap-3 rounded-md bg-cream">
             <div>
-                <span className="bg-[#251600AB] px-2 w-fit rounded-sm text-brown">{Math.trunc((props.given_donations / props.requested_donations) * 100)}%</span>
+                <span className="bg-[#251600AB] px-2 w-fit rounded-xs text-brown">{Math.trunc((props.given_donations / props.requested_donations) * 100)}%</span>
                 <img src={props.banner_img} className='w-full desktop:h-[30vh] tablet:h-[20vh] h-[20vh] object-cover' alt="" />
                 <span className="flex flex-row items-center gap-2 desktop:py-4 text-sm desktop:text-md">
                     <h3 className="text-orange font-bold font-josefin ">DONATIONS :</h3>

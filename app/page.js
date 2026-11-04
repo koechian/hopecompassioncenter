@@ -49,7 +49,7 @@ export default function Landing() {
             </Link>
           </div>
           <div
-            className="tablet:w-full desktop:w-1/2 tablet:h-[35vh] h-[25vh] desktop:h-[inherit] !border-none ring-4 ring-[#251600a1]"
+            className="tablet:w-full desktop:w-1/2 tablet:h-[35vh] h-[25vh] desktop:h-[inherit] border-none! ring-4 ring-[#251600a1]"
             style={{
               position: "relative",
               backgroundImage: "url(/hero.jpg)",
@@ -63,7 +63,6 @@ export default function Landing() {
             className="w-[5vh] tablet:w-[10vh] top-[1%] tablet:top-[0%] left-[2%] absolute "
             alt=""
           />
-          {/* <img src="/butterflies.png" className="w-[5vh] tablet:w-[10vh] desktop:bottom-0 bottom-0 tablet:top-[0%] left-[2%] absolute " alt="" /> */}
         </div>
       </section>
       <section className="bg-brown text-cream flex flex-col p-5 desktop:p-20">
@@ -119,7 +118,7 @@ export default function Landing() {
             </button>
           </Link>
           <div
-            className="hidden desktop:block tablet:!w-28"
+            className="hidden desktop:block tablet:w-28!"
             style={{
               position: "absolute",
               right: "4%",
@@ -139,7 +138,8 @@ export default function Landing() {
           <iframe
             className="rounded-md mb-2 aspect-video w-full tablet:w-3/4"
             src="https://www.youtube.com/embed/vBDMQhZv8UI?si=UlSgDKIzl9XnRXK4&amp;controls=0"
-            title="YouTube video player"
+            title="Meet our founder"
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>

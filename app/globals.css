@@ -1,8 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Josefin+Slab:wght@300&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Only the site's own breakpoints exist; sm/md/lg/xl are deliberately unset. */
+  --breakpoint-*: initial;
+  --breakpoint-mobile: 475px;
+  --breakpoint-tablet: 640px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1280px;
+
+  --color-brown: #251600;
+  --color-cream: #edf1dd;
+  --color-orange: #ff6803;
+  --color-orange_light: #eb5c31;
+
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Tailwind v3 base defaults that v4 changed, kept so the site renders as before. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: var(--color-white);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 :root {
   --foreground-brown: #251600;
@@ -11,21 +53,23 @@
   --secondary-green: #003e1f;
 }
 
-/* reset */
-html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-section {
-  width: 100vw;
-  /* min-height: 90vh; */
+/* Tailwind v4 puts utilities in a cascade layer, so these element rules
+   must sit in the base layer or they would override utility classes. */
+@layer base {
+  html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  section {
+    width: 100%;
+  }
 }
 
-.font-josefin {
+@utility font-josefin {
   font-family: "Josefin Slab", sans-serif;
 }
 
-.bg-blur {
+@utility bg-blur {
   backdrop-filter: blur(3px);
 }

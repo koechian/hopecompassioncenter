@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hope Compassion Center
 
-## Getting Started
+Website for Hope Compassion Center, served at <https://hopecompassioncenter.com/>.
 
-First, run the development server:
+Built with Next.js (App Router), React and Tailwind CSS, and exported as plain static files. The
+domain is hosted on Safaricom's cPanel (Apache), so there is no Node server in production.
+
+## Development
+
+Requires Node.js 20.9 or later (`.nvmrc` pins 22) and Yarn 1.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
+yarn dev      # http://localhost:3000
+yarn lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build and deploy
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+yarn build    # writes the static site to out/
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Every route is exported as `<route>/index.html` (for example `out/pages/about/index.html`), which
+Apache serves directly. `public/.htaccess` is copied into `out/` and sets the 404 page and turns
+off directory listings.
 
-## Learn More
+To deploy, upload the **contents** of `out/` to `public_html` in cPanel File Manager, replacing the
+previous files. Zipping `out/`, uploading the archive, and extracting it in place is the quickest
+way. Make sure the hidden `.htaccess` file is included.
 
-To learn more about Next.js, take a look at the following resources:
+## Forms
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The contact and donation forms send email through EmailJS from the browser. The service ID,
+template IDs and public key are in `app/pages/contact/page.jsx` and `app/pages/donate/page.jsx`.

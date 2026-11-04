@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import Link from 'next/link'
 import emailjs from '@emailjs/browser';
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
 function Contact() {
@@ -108,28 +107,28 @@ function Contact() {
                     <div className="flex flex-col gap-2 tablet:gap-5 px-5 mobile:px-10 py-10">
                         <div className="w-full flex gap-5 flex-col mobile:flex-row">
                             <div className="flex flex-col w-full tablet:w-1/2 gap-2">
-                                <label htmlFor="name" className='text-lg font-semibold'>Name:</label>
-                                <input type="text" ref={firstNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your name' />
+                                <label htmlFor="contact-first-name" className='text-lg font-semibold'>Name:</label>
+                                <input id="contact-first-name" type="text" required autoComplete="given-name" ref={firstNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your name' />
                             </div>
                             <div className="flex flex-col w-full tablet:w-1/2 gap-2">
-                                <label htmlFor="name" className='text-lg font-semibold'>Last Name:</label>
-                                <input type="text" ref={lastNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter last name' />
+                                <label htmlFor="contact-last-name" className='text-lg font-semibold'>Last Name:</label>
+                                <input id="contact-last-name" type="text" autoComplete="family-name" ref={lastNameRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter last name' />
                             </div>
                         </div>
                         <div className="flex flex-col w-full gap-2">
-                            <label htmlFor="email" className='text-lg font-semibold'>Email:</label>
-                            <input type="email" ref={emailRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your email' />
+                            <label htmlFor="contact-email" className='text-lg font-semibold'>Email:</label>
+                            <input id="contact-email" type="email" required autoComplete="email" ref={emailRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your email' />
                         </div>
                         <div className="flex flex-col w-full gap-2">
-                            <label htmlFor="subject" className='text-lg font-semibold'>Subject:</label>
-                            <input type="text" ref={subjectRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your subject' />
+                            <label htmlFor="contact-subject" className='text-lg font-semibold'>Subject:</label>
+                            <input id="contact-subject" type="text" ref={subjectRef} className="w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6" placeholder='Enter your subject' />
                         </div>
                         <div className="flex flex-col w-full gap-2">
-                            <label htmlFor="message" className='text-lg font-semibold'>Message:</label>
-                            <textarea name="" ref={messageRef} className='w-full rounded-md border-0 py-2 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6' id="" cols="30" rows="5"></textarea>
+                            <label htmlFor="contact-message" className='text-lg font-semibold'>Message:</label>
+                            <textarea required ref={messageRef} className='w-full rounded-md border-0 py-2 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-orange mobile:text-sm mobile:leading-6' id="contact-message" cols="30" rows="5"></textarea>
                             <small className="text-sm">By sending this message you agree to our <b className='text-blue-600 font-light'>terms & conditions</b></small>
                         </div>
-                        <button className="rounded bg-orange text-brown w-fit px-10 py-2" type='submit'> Submit</button>
+                        <button className="rounded-sm bg-orange text-brown w-fit px-10 py-2" type='submit'> Submit</button>
                     </div>
                 </form>
             </div>
