@@ -6,8 +6,8 @@ export const site = {
   url: "https://hopecompassioncenter.com",
   location: "Nairobi, Kenya",
   email: "info@hopecompassioncenter.com",
-  phone: null,
-  whatsapp: null,
+  phone: "+254 725 256570",
+  whatsapp: "+254 725 256570",
   // Only accounts officially managed by Hope Compassion Center, e.g. { platform: "Facebook", url: "https://..." }.
   socialLinks: [],
   founderVideoId: "vBDMQhZv8UI",

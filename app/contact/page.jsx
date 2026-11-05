@@ -1,6 +1,7 @@
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { contact, enquiryCategories } from "@/content/contact";
 import { site } from "@/content/site";
+import { telephoneHref, whatsappHref } from "@/lib/contact_links";
 import ButtonLink from "../components/ButtonLink";
 import EnquiryForm from "../components/EnquiryForm";
 import Icon from "../components/Icon";
@@ -11,14 +12,10 @@ export const metadata = {
   description: "Contact Hope Compassion Center in Nairobi, Kenya, with a general enquiry, partnership proposal or volunteering question.",
 };
 
-function whatsappHref(number) {
-  return `https://wa.me/${number.replace(/\D/g, "")}`;
-}
-
 export default function ContactPage() {
   const details = [
     site.email && { icon: <LuMail className="size-5" aria-hidden="true" />, label: "Email", text: site.email, href: `mailto:${site.email}` },
-    site.phone && { icon: <LuPhone className="size-5" aria-hidden="true" />, label: "Telephone", text: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    site.phone && { icon: <LuPhone className="size-5" aria-hidden="true" />, label: "Telephone", text: site.phone, href: telephoneHref(site.phone) },
     site.whatsapp && { icon: <Icon name="WhatsApp" className="size-5" />, label: "WhatsApp", text: site.whatsapp, href: whatsappHref(site.whatsapp) },
     { icon: <LuMapPin className="size-5" aria-hidden="true" />, label: "Location", text: site.location },
   ].filter(Boolean);
