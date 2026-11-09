@@ -17,7 +17,7 @@ export default function SiteFooter() {
     <footer className="bg-forest text-white">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <img src="/brand/logo_wordmark_reversed.svg" alt="Hope Compassion Center" className="h-8 w-auto" />
+          <img src="/brand/logo_lockup_reversed.webp" alt="Hope Compassion Center" width="840" height="295" className="h-20 w-auto" />
           <p className="mt-4 max-w-xs text-white/80 italic">{site.tagline}</p>
           {site.socialLinks.length > 0 && (
             <div className="mt-6">

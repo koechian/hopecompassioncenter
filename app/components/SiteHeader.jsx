@@ -30,10 +30,10 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-forest/10 bg-cream/95 backdrop-blur-sm">
-      <div className="container-page flex h-18 items-center justify-between gap-4">
+      <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link href="/" className="shrink-0" onClick={() => setMenuOpen(false)}>
-          <img src="/brand/logo_mark.svg" alt="Hope Compassion Center home" className="h-9 w-auto sm:hidden" />
-          <img src="/brand/logo_wordmark.svg" alt="Hope Compassion Center home" className="hidden h-8 w-auto sm:block" />
+          <img src="/brand/logo_mark.webp" alt="Hope Compassion Center home" width="512" height="512" className="size-12 sm:hidden" />
+          <img src="/brand/logo_lockup.webp" alt="Hope Compassion Center home" width="840" height="295" className="hidden h-14 w-auto sm:block" />
         </Link>
 
         <nav aria-label="Main" className="hidden xl:block">

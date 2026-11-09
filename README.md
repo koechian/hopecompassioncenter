@@ -24,7 +24,8 @@ yarn lint
 | `app/components/` | Shared building blocks: header, footer, page header, buttons, enquiry form, gallery viewer |
 | `app/globals.css` | Brand colours and fonts as Tailwind theme tokens |
 | `public/photos/` | Photographs used across the site |
-| `public/brand/` | Logo files, including a reversed version for dark backgrounds |
+| `public/brand/` | Logo files for the site, including a reversed lockup for dark backgrounds |
+| `brand_source/` | The client's original logo files, which the web versions were cut from. Not deployed. |
 
 ## Editing content
 
