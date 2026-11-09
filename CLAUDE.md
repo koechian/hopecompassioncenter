@@ -74,6 +74,8 @@ temporarily pass `apiHost` and `useProjectHostname: false` to `createClient` (re
   services that need Cloudflare DNS (Cloudflare Email Service) are ruled out. Sending as
   `@hopecompassioncenter.com` from another provider needs DNS records added at Safaricom.
 - The FTP server is Pure-FTPd with explicit TLS on port 21. SFTP (22) and implicit FTPS (990) are closed.
+  Its certificate names only `host26.safaricombusiness.co.ke` (the cPanel host, same IP as the domain), so
+  that is `FTP_SERVER`; the workflow verifies the certificate (`security: strict`).
 - Forms send through EmailJS from the browser (`lib/send_enquiry.js`, existing contact template, with a
   honeypot field). A confirmation email to the sender has to be set up in the EmailJS dashboard as a
   Linked Template (auto-reply), which costs one extra send per enquiry.
@@ -96,8 +98,10 @@ Next steps:
 
 1. Sanity: invite client staff as Editors (sanity.io/manage, project Members). The GitHub variables
    `SANITY_PROJECT_ID` and `SANITY_DATASET` are no longer needed; the IDs are the code defaults.
-2. Deployment: create a cPanel FTP account limited to `public_html`, add the `FTP_*` secrets, set
-   `DEPLOY_ENABLED`, and add the Sanity webhook (README, *Build and deploy*). After the first upload,
+2. Deployment: the FTP account `webadmin@hopecompassioncenter.com` exists and logs in over verified TLS,
+   but its home directory is not `public_html` (it is empty and not served; checked 2026-11-09). Point it
+   at `public_html`, rotate its password, add the `FTP_*` secrets, run the workflow as a dry run, then set
+   `DEPLOY_ENABLED` and add the Sanity webhook (README, *Build and deploy*). After the first upload,
    delete the old `pages/` folder from `public_html` and check whether PHP runs on the host.
 3. Offered and not started: branded HTML templates for the EmailJS notification and auto-reply; a visual
    design pass in Brilliant (its MCP runs from the Windows desktop app at `http://127.0.0.1:3333/mcp`).

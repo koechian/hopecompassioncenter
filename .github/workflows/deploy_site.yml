@@ -2,12 +2,14 @@
 #
 # Runs on every push to main, when Sanity reports published content (a webhook sends the
 # `sanity-content-published` repository dispatch), every morning so past events and closed
-# opportunities drop off, and on demand from the Actions tab.
+# opportunities drop off, and on demand from the Actions tab. A manual run can be a dry run, which
+# connects to the server and lists what would be uploaded or deleted without changing anything.
 #
 # Repository settings it reads:
 #   variables  DEPLOY_ENABLED ("true" turns on the upload); optionally SANITY_PROJECT_ID and
 #              SANITY_DATASET, which override the defaults in lib/sanity_client.js
-#   secrets    FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (an FTP account whose home is public_html)
+#   secrets    FTP_SERVER (host26.safaricombusiness.co.ke, the name on the server's certificate),
+#              FTP_USERNAME, FTP_PASSWORD (an FTP account whose home is public_html)
 name: Build and deploy site
 
 on:
@@ -18,6 +20,11 @@ on:
   schedule:
     - cron: "0 3 * * *" # 06:00 in Nairobi
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List the changes the upload would make, without uploading"
+        type: boolean
+        default: false
 
 # One deployment at a time; a newer run waits rather than interrupting an upload.
 concurrency:
@@ -49,12 +56,15 @@ jobs:
           SANITY_DATASET: ${{ vars.SANITY_DATASET }}
 
       - name: Upload to cPanel
-        if: vars.DEPLOY_ENABLED == 'true'
+        if: vars.DEPLOY_ENABLED == 'true' || inputs.dry_run
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
+          # Verify the server's certificate; the action's default ("loose") does not.
+          security: strict
+          dry-run: ${{ inputs.dry_run == true }}
           local-dir: ./out/
           server-dir: ./

@@ -133,8 +133,12 @@ uploads `out/` over FTPS. It needs these repository settings:
 | `SANITY_PROJECT_ID` | variable | Optional. Overrides the project ID (`bhosprud`) |
 | `SANITY_DATASET` | variable | Optional. Overrides the dataset (`production`) |
 | `DEPLOY_ENABLED` | variable | `true` to upload after building |
-| `FTP_SERVER` | secret | `ftp.hopecompassioncenter.com` |
+| `FTP_SERVER` | secret | `host26.safaricombusiness.co.ke` (the name on the server's TLS certificate) |
 | `FTP_USERNAME`, `FTP_PASSWORD` | secret | A cPanel FTP account whose home directory is `public_html` |
+
+The upload verifies the server's certificate, which names only `host26.safaricombusiness.co.ke`, so
+`ftp.hopecompassioncenter.com` (the same server) fails verification. To check the setup without changing
+anything, run the workflow from the Actions tab with *dry run* ticked: it lists what it would upload.
 
 Sanity starts a build through a webhook (Sanity Manage → API → Webhooks) that sends a `POST` to
 `https://api.github.com/repos/koechian/hopecompassioncenter/dispatches` on create, update and delete,
