@@ -14,7 +14,8 @@ The "Status" section at the end is a snapshot for picking the work back up.
   trailing slashes.
 - **`public/.htaccess`** redirects HTTP to HTTPS (scoped to the real domain), sends the old site's
   `/pages/...` addresses to their new pages with 301s, and sets the 404 page. Keep the cPanel PHP handler
-  block (ea-php80) at the end unchanged.
+  block at the end matching the one cPanel writes on the server (ea-php81 since 2026-11-06; it was
+  ea-php80).
 - **Workflow.** Commit straight to `main`; there are no merge requests. Push only when asked. No
   `Co-Authored-By` lines. A push runs `.github/workflows/deploy_site.yml` (lint and build; the FTPS upload
   stays off until the repository variable `DEPLOY_ENABLED` is `true`).
@@ -98,10 +99,12 @@ Next steps:
 
 1. Sanity: invite client staff as Editors (sanity.io/manage, project Members). The GitHub variables
    `SANITY_PROJECT_ID` and `SANITY_DATASET` are no longer needed; the IDs are the code defaults.
-2. Deployment: the FTP account `webadmin@hopecompassioncenter.com` exists and logs in over verified TLS,
-   but its home directory is not `public_html` (it is empty and not served; checked 2026-11-09). Point it
-   at `public_html`, rotate its password, add the `FTP_*` secrets, run the workflow as a dry run, then set
-   `DEPLOY_ENABLED` and add the Sanity webhook (README, *Build and deploy*). After the first upload,
+2. Deployment: the FTP account `webadmin@hopecompassioncenter.com` (home `public_html`, the live
+   document root; verified 2026-11-09 over verified TLS) is ready. Rotate its password, add the `FTP_*`
+   secrets, push, run the workflow as a dry run, then set `DEPLOY_ENABLED` and add the Sanity webhook
+   (README, *Build and deploy*). The account's old empty folder `hopecompassioncenter.com/webadmin` can go.
+   The first upload only adds and replaces files, so the old site's leftovers stay (`pages/`, `index.txt`,
+   root images, old `_next/` chunks); delete `pages/` and the other leftovers afterwards. After the first upload,
    delete the old `pages/` folder from `public_html` and check whether PHP runs on the host.
 3. Offered and not started: branded HTML templates for the EmailJS notification and auto-reply; a visual
    design pass in Brilliant (its MCP runs from the Windows desktop app at `http://127.0.0.1:3333/mcp`).
