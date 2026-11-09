@@ -5,7 +5,8 @@
 # opportunities drop off, and on demand from the Actions tab.
 #
 # Repository settings it reads:
-#   variables  SANITY_PROJECT_ID, SANITY_DATASET, DEPLOY_ENABLED ("true" turns on the upload)
+#   variables  DEPLOY_ENABLED ("true" turns on the upload); optionally SANITY_PROJECT_ID and
+#              SANITY_DATASET, which override the defaults in lib/sanity_client.js
 #   secrets    FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (an FTP account whose home is public_html)
 name: Build and deploy site
 

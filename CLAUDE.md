@@ -27,8 +27,9 @@ The "Status" section at the end is a snapshot for picking the work back up.
 
 - Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS 4, Yarn 1, Node 22 (`.nvmrc`).
   TypeScript is pinned to 6.0.3 because typescript-eslint does not support 7.
-- **Content has two sources.** `lib/content_repository.js` reads Sanity at build time when
-  `SANITY_PROJECT_ID` is set, and otherwise falls back to `content/`. The Sanity-backed parts are
+- **Content has two sources.** `lib/content_repository.js` reads Sanity at build time; the project ID
+  (`bhosprud`, dataset `production`) is the default in `lib/sanity_client.js` and `studio/sanity_project.js`,
+  and environment variables only override it. Removing that default makes the site build from `content/`. The Sanity-backed parts are
   contact details, programmes and impact, gallery albums, news, and the optional sections. Page copy
   (home, about, partnership, contact, values) stays in `content/` and changes by commit.
 - **Optional sections** (announcement, events, opportunities, reports, FAQs, team, partners, testimonials)
@@ -37,8 +38,10 @@ The "Status" section at the end is a snapshot for picking the work back up.
 - **Category lists are duplicated** between `studio/schemas/categories.js` and `content/gallery.js`,
   `content/news.js` and `content/site.js` (team groups). Change both sides together.
 - `studio/` is a separate package (Sanity 6) with its own `yarn install`. Hosted Studio:
-  `hopecompassioncenter.sanity.studio`. `studio/scripts/import_site_content.mjs` seeds Sanity from
-  `content/` and uploads the photographs; it only creates missing documents.
+  `hopecompassioncenter.sanity.studio` (app ID recorded in `studio/sanity.cli.js`). The Sanity project
+  sits in the organisation "Hope Compassion Center" (`or6lhblzn`); the CLI will not create a project
+  without an organisation. `studio/scripts/import_site_content.mjs` seeds Sanity from `content/` and
+  uploads the photographs; it only creates missing documents. It has been run against `production`.
 
 ## Pitfalls already hit
 
@@ -50,6 +53,11 @@ The "Status" section at the end is a snapshot for picking the work back up.
 - Tailwind 4: unlayered CSS beats utilities, so resets belong in `@layer base`. The brief's gold
   (`#D3A64F`) fails contrast as text on cream; use it on forest green or decoratively.
 - Sanity schema: subtypes of `image` cannot override `fields` (hence `bodyImage` in news posts).
+- The Studio's dependencies need Node 22.20 or later (the Sanity CLI pulls in `skills`); the local nvm
+  Node 22 is 22.13, so run the Studio with Node 24. The site itself builds on Node 22.
+- The imported gallery albums share one creation time and have no date, so Sanity returns them in ID
+  order; `lib/content_repository.js` keeps albums tied on date and creation time in the category order
+  of `content/gallery.js`, which keeps the gallery identical to the `content/` build.
 
 ## Testing
 
@@ -79,11 +87,15 @@ Done and pushed: upgrade and fixes, restructure to the client's brief, phone and
 Sanity Studio and data layer, deployment workflow, optional sections. The live site still runs the old
 build; nothing has been deployed yet.
 
+Done (committed 2026-11-09): Sanity project `bhosprud` created with a public `production` dataset,
+content imported (8 albums, 66 photos, programmes and impact, contact details, Site Sections all off),
+the import token revoked, the Studio deployed. A build against Sanity matches the `content/` build page
+for page (photos, order and visible text).
+
 Next steps:
 
-1. Sanity: the developer is creating the project (`npx sanity login` in `studio/`). Then set
-   `SANITY_STUDIO_PROJECT_ID` and run the import, `yarn deploy` the Studio, invite client staff as
-   Editors, and set the GitHub variables `SANITY_PROJECT_ID` and `SANITY_DATASET`.
+1. Sanity: invite client staff as Editors (sanity.io/manage, project Members). The GitHub variables
+   `SANITY_PROJECT_ID` and `SANITY_DATASET` are no longer needed; the IDs are the code defaults.
 2. Deployment: create a cPanel FTP account limited to `public_html`, add the `FTP_*` secrets, set
    `DEPLOY_ENABLED`, and add the Sanity webhook (README, *Build and deploy*). After the first upload,
    delete the old `pages/` folder from `public_html` and check whether PHP runs on the host.

@@ -4,8 +4,8 @@
 // Documents have fixed IDs and are only created if missing, so running the import again never overwrites
 // edits made in the Studio.
 //
-// Usage, from studio/:
-//   SANITY_STUDIO_PROJECT_ID=<id> SANITY_WRITE_TOKEN_FILE=<path to token> yarn import-content
+// Usage, from studio/ (the project ID defaults to the one in sanity_project.js):
+//   SANITY_WRITE_TOKEN_FILE=<path to token> yarn import-content
 // The token needs Editor access; create it under API → Tokens at https://www.sanity.io/manage.
 import { createReadStream, readFileSync } from "node:fs";
 import path from "node:path";

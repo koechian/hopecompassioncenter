@@ -66,21 +66,32 @@ Publishing in the Studio starts a rebuild and upload (see *Build and deploy*); c
 minutes later. Sanity serves the photographs from its image CDN.
 
 Everything else (page copy, values, the founder's story) lives in `content/` and changes through a
-commit. Without a Sanity project ID the site builds entirely from `content/`, including the fallback
-copies of the Sanity content; `lib/content_repository.js` makes that switch.
+commit. The Sanity project ID (`bhosprud`) is public and set as the default in `lib/sanity_client.js` and
+`studio/sanity_project.js`. Without it the site would build entirely from `content/`, including the
+fallback copies of the Sanity content; `lib/content_repository.js` makes that switch.
 
 ### Studio
+
+The Studio needs Node.js 22.20 or later (a dependency of the Sanity CLI requires it).
 
 ```bash
 cd studio
 yarn install
-SANITY_STUDIO_PROJECT_ID=<id> yarn dev      # http://localhost:3333
-SANITY_STUDIO_PROJECT_ID=<id> yarn deploy   # publishes the hosted Studio
+yarn dev      # http://localhost:3333
+yarn deploy   # publishes the hosted Studio
 ```
 
 `studio/scripts/import_site_content.mjs` copies the contact details, programmes and gallery from
 `content/` into Sanity, uploading the photographs, and creates Site Sections with everything switched
 off. It only creates documents that do not exist yet, so it never overwrites edits made in the Studio.
+It has already been run against the `production` dataset. It needs an Editor token, read from a file so
+the token stays out of the shell history:
+
+```bash
+npx sanity tokens add "Content import" --project bhosprud --role editor --expires-at <date> --json
+SANITY_WRITE_TOKEN_FILE=<file holding the token> yarn import-content
+npx sanity tokens delete <token ID>
+```
 
 Compress photographs added to `public/photos/` before committing them:
 
@@ -99,7 +110,7 @@ dashboard.
 ## Build and deploy
 
 ```bash
-SANITY_PROJECT_ID=<id> yarn build    # writes the static site to out/
+yarn build    # writes the static site to out/, reading published content from Sanity
 ```
 
 Every route is exported as `<route>/index.html`, which Apache serves directly. `public/.htaccess` is
@@ -119,8 +130,8 @@ uploads `out/` over FTPS. It needs these repository settings:
 
 | Setting | Kind | Value |
 |---|---|---|
-| `SANITY_PROJECT_ID` | variable | The Sanity project ID |
-| `SANITY_DATASET` | variable | `production` |
+| `SANITY_PROJECT_ID` | variable | Optional. Overrides the project ID (`bhosprud`) |
+| `SANITY_DATASET` | variable | Optional. Overrides the dataset (`production`) |
 | `DEPLOY_ENABLED` | variable | `true` to upload after building |
 | `FTP_SERVER` | secret | `ftp.hopecompassioncenter.com` |
 | `FTP_USERNAME`, `FTP_PASSWORD` | secret | A cPanel FTP account whose home directory is `public_html` |
