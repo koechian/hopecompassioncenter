@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { about } from "@/content/about";
 import { partnership, partnershipTypes } from "@/content/partnership";
 import ButtonLink from "../components/ButtonLink";
 import EnquiryForm from "../components/EnquiryForm";
 import Icon from "../components/Icon";
+import PartnerLogos from "../components/PartnerLogos";
+import { getPartners, getSiteSections } from "@/lib/content_repository";
 import PageHeader from "../components/PageHeader";
 import SectionHeading from "../components/SectionHeading";
 
@@ -16,8 +19,10 @@ function enquiryHref(type) {
   return `/partner-with-us/?type=${encodeURIComponent(type)}#enquiry`;
 }
 
-export default function PartnerWithUsPage() {
+export default async function PartnerWithUsPage() {
   const { opening, ways, closing } = partnership;
+  const [sections, partners] = await Promise.all([getSiteSections(), getPartners()]);
+  const showPartners = sections.partners && partners.organisations.length > 0;
   return (
     <>
       <PageHeader title={partnership.title} tagline={partnership.tagline} />
@@ -54,6 +59,15 @@ export default function PartnerWithUsPage() {
               </li>
             ))}
           </ul>
+          {sections.opportunities && (
+            <p className="mt-10 text-lg text-charcoal/85">
+              Looking for a specific role?{" "}
+              <Link href="/opportunities/" className="font-semibold text-rust underline hover:text-rust-deep">
+                See current volunteer roles and opportunities
+              </Link>
+              .
+            </p>
+          )}
         </div>
       </section>
 
@@ -70,6 +84,17 @@ export default function PartnerWithUsPage() {
           </ul>
         </div>
       </section>
+
+      {showPartners && (
+        <section id="partners" className="bg-cream-deep">
+          <div className="container-page py-16 lg:py-24">
+            <SectionHeading eyebrow="Thank You" title="Our Partners & Supporters" introduction={partners.introduction} />
+            <div className="mt-10">
+              <PartnerLogos organisations={partners.organisations} />
+            </div>
+          </div>
+        </section>
+      )}
 
       <section id="enquiry">
         <div className="container-page grid gap-10 py-16 lg:grid-cols-[1fr_1.6fr] lg:gap-16 lg:py-24">

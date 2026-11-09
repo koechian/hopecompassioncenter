@@ -1,7 +1,8 @@
 # Builds the static site and uploads it to the cPanel host over FTPS.
 #
 # Runs on every push to main, when Sanity reports published content (a webhook sends the
-# `sanity-content-published` repository dispatch), and on demand from the Actions tab.
+# `sanity-content-published` repository dispatch), every morning so past events and closed
+# opportunities drop off, and on demand from the Actions tab.
 #
 # Repository settings it reads:
 #   variables  SANITY_PROJECT_ID, SANITY_DATASET, DEPLOY_ENABLED ("true" turns on the upload)
@@ -13,6 +14,8 @@ on:
     branches: [main]
   repository_dispatch:
     types: [sanity-content-published]
+  schedule:
+    - cron: "0 3 * * *" # 06:00 in Nairobi
   workflow_dispatch:
 
 # One deployment at a time; a newer run waits rather than interrupting an upload.

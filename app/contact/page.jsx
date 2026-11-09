@@ -1,6 +1,6 @@
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { contact, enquiryCategories } from "@/content/contact";
-import { getSiteSettings } from "@/lib/content_repository";
+import { getSiteSections, getSiteSettings } from "@/lib/content_repository";
 import { telephoneHref, whatsappHref } from "@/lib/contact_links";
 import ButtonLink from "../components/ButtonLink";
 import EnquiryForm from "../components/EnquiryForm";
@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 export default async function ContactPage() {
-  const site = await getSiteSettings();
+  const [site, sections] = await Promise.all([getSiteSettings(), getSiteSections()]);
   const details = [
     site.email && { icon: <LuMail className="size-5" aria-hidden="true" />, label: "Email", text: site.email, href: `mailto:${site.email}` },
     site.phone && { icon: <LuPhone className="size-5" aria-hidden="true" />, label: "Telephone", text: site.phone, href: telephoneHref(site.phone) },
@@ -66,6 +66,16 @@ export default async function ContactPage() {
                   ))}
                 </ul>
               </div>
+            )}
+
+            {sections.faqs && (
+              <p className="mt-10 rounded-2xl bg-cream-deep p-6 text-lg">
+                Have a question? Our{" "}
+                <a href="/faqs/" className="font-semibold text-rust underline hover:text-rust-deep">
+                  frequently asked questions
+                </a>{" "}
+                may already have the answer.
+              </p>
             )}
           </div>
 

@@ -1,5 +1,9 @@
 import { Figtree, Fraunces } from "next/font/google";
 import "./globals.css";
+import { footerLinks, navigation } from "@/content/site";
+import { getSiteSections } from "@/lib/content_repository";
+import { enabledLinks } from "@/lib/navigation";
+import AnnouncementBanner from "./components/AnnouncementBanner";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
@@ -25,7 +29,10 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const sections = await getSiteSections();
+  const mainMenu = enabledLinks(navigation, sections);
+
   return (
     <html lang="en" className={`${fraunces.variable} ${figtree.variable}`}>
       <body className="font-sans antialiased">
@@ -35,9 +42,10 @@ export default function RootLayout({ children }) {
         >
           Skip to content
         </a>
-        <SiteHeader />
+        {sections.announcement && <AnnouncementBanner announcement={sections.announcement} />}
+        <SiteHeader navigation={mainMenu} />
         <main id="main-content">{children}</main>
-        <SiteFooter />
+        <SiteFooter links={[...mainMenu, ...enabledLinks(footerLinks, sections)]} />
       </body>
     </html>
   );

@@ -2,12 +2,14 @@ import Link from "next/link";
 import { LuArrowRight } from "react-icons/lu";
 import { home } from "@/content/home";
 import { values } from "@/content/values";
-import { getGalleryPhotos, getNewsPosts, getProgrammesAndImpact } from "@/lib/content_repository";
+import { getGalleryPhotos, getNewsPosts, getPartners, getProgrammesAndImpact, getSiteSections, getTestimonials } from "@/lib/content_repository";
 import ButtonLink from "./components/ButtonLink";
 import CallToAction from "./components/CallToAction";
 import Icon from "./components/Icon";
 import NewsCard from "./components/NewsCard";
+import PartnerLogos from "./components/PartnerLogos";
 import SectionHeading from "./components/SectionHeading";
+import Testimonials from "./components/Testimonials";
 
 const GALLERY_PREVIEW_SIZE = 6;
 
@@ -214,28 +216,40 @@ function GalleryPreview({ photos }) {
   );
 }
 
-function Partnerships() {
+// `organisations` are the partner logos, shown only when the Partners section is switched on.
+function Partnerships({ organisations }) {
   const { title, text } = home.partnerships;
   return (
     <section className="bg-cream-deep">
-      <div className="container-page flex flex-col items-start gap-8 py-16 md:flex-row md:items-center md:justify-between lg:py-20">
-        <div className="max-w-2xl">
-          <SectionHeading eyebrow="Working Together" title={title} />
-          <p className="mt-4 text-lg text-charcoal/85">{text}</p>
+      <div className="container-page py-16 lg:py-20">
+        <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <SectionHeading eyebrow="Working Together" title={title} />
+            <p className="mt-4 text-lg text-charcoal/85">{text}</p>
+          </div>
+          <ButtonLink href="/partner-with-us/" className="shrink-0">
+            Partner With Us
+          </ButtonLink>
         </div>
-        <ButtonLink href="/partner-with-us/" className="shrink-0">
-          Partner With Us
-        </ButtonLink>
+        {organisations.length > 0 && (
+          <div className="mt-12">
+            <h3 className="mb-6 font-sans text-sm font-bold tracking-[0.18em] text-forest uppercase">Our Partners & Supporters</h3>
+            <PartnerLogos organisations={organisations} />
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
 export default async function HomePage() {
-  const [{ programmes, impactFigures }, galleryPhotos, newsPosts] = await Promise.all([
+  const [{ programmes, impactFigures }, galleryPhotos, newsPosts, sections, partners, testimonials] = await Promise.all([
     getProgrammesAndImpact(),
     getGalleryPhotos(),
     getNewsPosts(),
+    getSiteSections(),
+    getPartners(),
+    getTestimonials(),
   ]);
   const communityStories = newsPosts.filter((post) => post.category === "Community Stories").slice(0, 3);
   const latestPosts = newsPosts.slice(0, 3);
@@ -249,11 +263,12 @@ export default async function HomePage() {
       <Programmes programmes={programmes} />
       <OurStory />
       <Values />
+      {sections.testimonials && testimonials.length > 0 && <Testimonials quotes={testimonials} />}
       {communityStories.length > 0 && (
         <PostsSection eyebrow="Stories of Change" title="Stories from the communities we serve" posts={communityStories} action="Read More Stories" />
       )}
       {galleryPreview.length > 0 && <GalleryPreview photos={galleryPreview} />}
-      <Partnerships />
+      <Partnerships organisations={sections.partners ? partners.organisations : []} />
       {latestPosts.length > 0 && (
         <PostsSection eyebrow="Latest Updates" title="News from Hope Compassion Center" posts={latestPosts} action="View News & Stories" />
       )}

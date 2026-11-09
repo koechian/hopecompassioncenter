@@ -42,6 +42,25 @@ Staff edit the parts of the site that change often in Sanity Studio
   children with consent.
 - **News & Stories**: posts with rich text and photographs. The home page's Stories of Change and Latest
   Updates sections, and each post's own page, appear once posts exist.
+- **Gallery videos**: YouTube links added to an album play in a Videos section on the Gallery page.
+
+### Optional sections
+
+These are built but stay hidden until switched on in **Site Sections** in the Studio, so each can go
+live once its content is ready:
+
+| Section | Where it appears | Content in the Studio |
+|---|---|---|
+| Announcement banner | Above the header on every page | Message and link, in Site Sections |
+| Events | `/events/`, in the main menu | Events (past ones move to "Recent events") |
+| Opportunities | `/opportunities/`, footer, Partner With Us | Opportunities (hidden after their closing date) |
+| Reports & Publications | `/reports/`, footer, About Us | Reports & Publications (PDF uploads) |
+| FAQs | `/faqs/`, footer, Contact | FAQs |
+| Our Team | About Us | Our Team |
+| Partners & Supporters | Home page, Partner With Us | Partners & Supporters |
+| Testimonials | Home page | Testimonials |
+
+A switched-off page shows the "page not found" message and is left out of menus and the sitemap.
 
 Publishing in the Studio starts a rebuild and upload (see *Build and deploy*); changes are live a few
 minutes later. Sanity serves the photographs from its image CDN.
@@ -60,7 +79,8 @@ SANITY_STUDIO_PROJECT_ID=<id> yarn deploy   # publishes the hosted Studio
 ```
 
 `studio/scripts/import_site_content.mjs` copies the contact details, programmes and gallery from
-`content/` into Sanity, uploading the photographs. It replaces the imported documents each time it runs.
+`content/` into Sanity, uploading the photographs, and creates Site Sections with everything switched
+off. It only creates documents that do not exist yet, so it never overwrites edits made in the Studio.
 
 Compress photographs added to `public/photos/` before committing them:
 
@@ -89,8 +109,12 @@ copied into `out/` and:
 - redirects the previous site's `/pages/...` addresses to their new pages,
 - sets the 404 page and turns off directory listings.
 
+Each build clears Next.js's fetch cache first (`scripts/clear_fetch_cache.mjs`), so it always uses the
+latest published content.
+
 GitHub Actions (`.github/workflows/deploy_site.yml`) builds the site on every push to `main`, whenever
-content is published in Sanity, and on demand from the Actions tab. When `DEPLOY_ENABLED` is `true` it
+content is published in Sanity, every morning (so past events and closed opportunities drop off), and on
+demand from the Actions tab. When `DEPLOY_ENABLED` is `true` it
 uploads `out/` over FTPS. It needs these repository settings:
 
 | Setting | Kind | Value |

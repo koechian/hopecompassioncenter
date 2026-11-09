@@ -3,11 +3,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuMenu, LuX } from "react-icons/lu";
-import { navigation } from "@/content/site";
 import ButtonLink from "./ButtonLink";
 
 const partnerHref = "/partner-with-us/";
-const desktopLinks = navigation.filter((item) => item.href !== partnerHref);
 
 function normalise(path) {
   return path === "/" ? path : path.replace(/\/?$/, "/");
@@ -17,7 +15,9 @@ function isCurrent(pathname, href) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
-export default function SiteHeader() {
+// `navigation` is the main menu with switched-off sections already removed.
+export default function SiteHeader({ navigation }) {
+  const desktopLinks = navigation.filter((item) => item.href !== partnerHref);
   const pathname = normalise(usePathname() ?? "/");
   const [menuOpen, setMenuOpen] = useState(false);
 

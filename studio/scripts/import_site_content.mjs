@@ -1,6 +1,8 @@
 // Copies the content that staff now edit in Sanity out of the website's content/ files: contact details,
-// programmes and impact figures, and the gallery (one album per category). Photographs are uploaded from
-// public/photos. Documents have fixed IDs, so running the import again replaces them rather than duplicating.
+// programmes and impact figures, and the gallery (one album per category), and creates the Site Sections
+// document with every optional section switched off. Photographs are uploaded from public/photos.
+// Documents have fixed IDs and are only created if missing, so running the import again never overwrites
+// edits made in the Studio.
 //
 // Usage, from studio/:
 //   SANITY_STUDIO_PROJECT_ID=<id> SANITY_WRITE_TOKEN_FILE=<path to token> yarn import-content
@@ -60,6 +62,10 @@ function siteSettingsDocument({ site }) {
   };
 }
 
+function siteSectionsDocument() {
+  return { _id: "siteSections", _type: "siteSections" };
+}
+
 function programmesDocument({ programmes, impactFigures, futurePriorities }, assetIds) {
   return {
     _id: "programmesAndImpact",
@@ -111,9 +117,14 @@ async function main() {
     ...gallery.galleryPhotos.map((photo) => photo.src),
   ]);
 
-  const documents = [siteSettingsDocument(site), programmesDocument(programmes, assetIds), ...galleryAlbumDocuments(gallery, assetIds)];
+  const documents = [
+    siteSettingsDocument(site),
+    siteSectionsDocument(),
+    programmesDocument(programmes, assetIds),
+    ...galleryAlbumDocuments(gallery, assetIds),
+  ];
   const transaction = client.transaction();
-  documents.forEach((document) => transaction.createOrReplace(document));
+  documents.forEach((document) => transaction.createIfNotExists(document));
   await transaction.commit();
   console.log(`imported ${documents.length} documents into ${projectId}/${dataset}`);
 }

@@ -5,13 +5,61 @@ import CallToAction from "../components/CallToAction";
 import Icon from "../components/Icon";
 import PageHeader from "../components/PageHeader";
 import SectionHeading from "../components/SectionHeading";
+import ButtonLink from "../components/ButtonLink";
 import FuturePriorities from "../components/FuturePriorities";
-import { getProgrammesAndImpact } from "@/lib/content_repository";
+import { getProgrammesAndImpact, getSiteSections, getTeam } from "@/lib/content_repository";
 
 export const metadata = {
   title: "About Us",
   description: "Who we are, our mission and values, and the story of how Hope Compassion Center began in Mathare, Nairobi.",
 };
+
+function TeamMember({ member }) {
+  return (
+    <li className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-forest/10">
+      {member.photoSrc && <img src={member.photoSrc} alt="" loading="lazy" className="mb-5 aspect-square w-full rounded-xl object-cover" />}
+      <h4 className="text-xl font-semibold">{member.name}</h4>
+      <p className="mt-1 text-sm font-semibold text-rust">{member.role}</p>
+      {member.bio && <p className="mt-3 text-charcoal/80">{member.bio}</p>}
+    </li>
+  );
+}
+
+function OurTeam({ introduction, groups }) {
+  return (
+    <section id="team" className="bg-white">
+      <div className="container-page py-16 lg:py-24">
+        <SectionHeading eyebrow="The People Behind Our Work" title="Our Team" introduction={introduction} />
+        {groups.map(({ group, members }) => (
+          <div key={group} className="mt-12">
+            <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-forest uppercase">{group}</h3>
+            <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {members.map((member) => (
+                <TeamMember key={member.name} member={member} />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Accountability() {
+  return (
+    <section className="bg-cream-deep">
+      <div className="container-page flex flex-col items-start gap-6 py-14 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl font-semibold sm:text-3xl">Accountability and transparency</h2>
+          <p className="mt-3 text-lg text-charcoal/85">Read our annual reports, financial statements and policies.</p>
+        </div>
+        <ButtonLink href="/reports/" variant="outline" className="shrink-0">
+          Reports & Publications
+        </ButtonLink>
+      </div>
+    </section>
+  );
+}
 
 function Founder() {
   const { founder } = about;
@@ -57,7 +105,7 @@ function Founder() {
 }
 
 export default async function AboutPage() {
-  const { futurePriorities } = await getProgrammesAndImpact();
+  const [{ futurePriorities }, sections, team] = await Promise.all([getProgrammesAndImpact(), getSiteSections(), getTeam()]);
 
   return (
     <>
@@ -119,6 +167,10 @@ export default async function AboutPage() {
       </section>
 
       <Founder />
+
+      {sections.team && team.groups.length > 0 && <OurTeam introduction={team.introduction} groups={team.groups} />}
+
+      {sections.reports && <Accountability />}
 
       <FuturePriorities priorities={futurePriorities} title="Looking Ahead: Our Vision for the Future" />
 

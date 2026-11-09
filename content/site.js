@@ -13,6 +13,8 @@ export const site = {
   founderVideoId: "vBDMQhZv8UI",
 };
 
+// Main menu. An entry with a `section` appears only while that section is switched on in Sanity
+// (Site Sections); see lib/navigation.js.
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/about/", label: "About Us" },
@@ -20,5 +22,16 @@ export const navigation = [
   { href: "/gallery/", label: "Gallery" },
   { href: "/partner-with-us/", label: "Partner With Us" },
   { href: "/news/", label: "News & Stories" },
+  { href: "/events/", label: "Events", section: "events" },
   { href: "/contact/", label: "Contact" },
 ];
+
+// Further pages, listed in the footer only.
+export const footerLinks = [
+  { href: "/opportunities/", label: "Opportunities", section: "opportunities" },
+  { href: "/reports/", label: "Reports & Publications", section: "reports" },
+  { href: "/faqs/", label: "FAQs", section: "faqs" },
+];
+
+// Groups on the Our Team section, in display order. studio/schemas/categories.js holds the same list.
+export const teamGroups = ["Leadership", "Board", "Staff", "Volunteers"];

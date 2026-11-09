@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa6";
-import { navigation } from "@/content/site";
 import { getSiteSettings } from "@/lib/content_repository";
 import { telephoneHref, whatsappHref } from "@/lib/contact_links";
 import Icon from "./Icon";
 
-export default async function SiteFooter() {
+// `links` are the quick links, with switched-off sections already removed.
+export default async function SiteFooter({ links }) {
   const site = await getSiteSettings();
   const contactLines = [
     site.email && { icon: LuMail, text: site.email, href: `mailto:${site.email}` },
@@ -46,7 +46,7 @@ export default async function SiteFooter() {
         <nav aria-label="Footer">
           <h2 className="font-sans text-sm font-bold tracking-[0.14em] text-gold uppercase">Quick Links</h2>
           <ul className="mt-4 space-y-2">
-            {navigation.map((item) => (
+            {links.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-white/85 hover:text-white hover:underline">
                   {item.label}
