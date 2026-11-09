@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa6";
-import { navigation, site } from "@/content/site";
+import { navigation } from "@/content/site";
+import { getSiteSettings } from "@/lib/content_repository";
 import { telephoneHref, whatsappHref } from "@/lib/contact_links";
 import Icon from "./Icon";
 
-export default function SiteFooter() {
+export default async function SiteFooter() {
+  const site = await getSiteSettings();
   const contactLines = [
     site.email && { icon: LuMail, text: site.email, href: `mailto:${site.email}` },
     site.phone && { icon: LuPhone, text: site.phone, href: telephoneHref(site.phone) },

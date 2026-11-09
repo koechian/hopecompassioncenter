@@ -1,4 +1,5 @@
-import { galleryCategories, galleryPhotos } from "@/content/gallery";
+import { galleryCategories } from "@/content/gallery";
+import { getGalleryPhotos } from "@/lib/content_repository";
 import GalleryBrowser from "../components/GalleryBrowser";
 import PageHeader from "../components/PageHeader";
 
@@ -7,7 +8,9 @@ export const metadata = {
   description: "Photographs from Hope Compassion Center's programmes, outreach and community events.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const galleryPhotos = await getGalleryPhotos();
+
   return (
     <>
       <PageHeader

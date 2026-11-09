@@ -1,27 +1,21 @@
 import Link from "next/link";
 import { LuArrowRight } from "react-icons/lu";
 import { home } from "@/content/home";
-import { impactFigures, programmes } from "@/content/programmes";
 import { values } from "@/content/values";
-import { galleryPhotos } from "@/content/gallery";
-import { newsPosts } from "@/content/news";
+import { getGalleryPhotos, getNewsPosts, getProgrammesAndImpact } from "@/lib/content_repository";
 import ButtonLink from "./components/ButtonLink";
 import CallToAction from "./components/CallToAction";
 import Icon from "./components/Icon";
 import NewsCard from "./components/NewsCard";
 import SectionHeading from "./components/SectionHeading";
 
-const galleryPreviewSources = [
-  "/photos/kids_center_1.jpg",
-  "/photos/eating.jpg",
-  "/photos/women_empowerment.jpg",
-  "/photos/sports_4.jpg",
-  "/photos/migori.jpg",
-  "/photos/december_2024_22.jpg",
-];
-const galleryPreview = galleryPreviewSources.map((src) => galleryPhotos.find((photo) => photo.src === src));
-const communityStories = newsPosts.filter((post) => post.category === "Community Stories").slice(0, 3);
-const latestPosts = newsPosts.slice(0, 3);
+const GALLERY_PREVIEW_SIZE = 6;
+
+// Photographs marked for the home page, or the newest ones if none are marked.
+function selectGalleryPreview(photos) {
+  const marked = photos.filter((photo) => photo.onHomePage);
+  return (marked.length > 0 ? marked : photos).slice(0, GALLERY_PREVIEW_SIZE);
+}
 
 function Hero() {
   const { headline, paragraphs, image } = home.hero;
@@ -73,7 +67,7 @@ function WhoWeAre() {
   );
 }
 
-function Impact() {
+function Impact({ impactFigures }) {
   const { eyebrow, title, introduction } = home.impact;
   return (
     <section className="bg-forest">
@@ -93,7 +87,7 @@ function Impact() {
   );
 }
 
-function Programmes() {
+function Programmes({ programmes }) {
   return (
     <section>
       <div className="container-page py-16 lg:py-24">
@@ -198,7 +192,7 @@ function PostsSection({ eyebrow, title, posts, action }) {
   );
 }
 
-function GalleryPreview() {
+function GalleryPreview({ photos }) {
   return (
     <section>
       <div className="container-page py-16 lg:py-24">
@@ -209,9 +203,9 @@ function GalleryPreview() {
           </ButtonLink>
         </div>
         <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-          {galleryPreview.map((photo) => (
+          {photos.map((photo) => (
             <li key={photo.src} className="aspect-square overflow-hidden rounded-xl sm:aspect-[4/3]">
-              <img src={photo.src} alt={photo.caption} loading="lazy" className="size-full object-cover" />
+              <img src={photo.thumbnailSrc} alt={photo.caption} loading="lazy" className="size-full object-cover" />
             </li>
           ))}
         </ul>
@@ -237,19 +231,28 @@ function Partnerships() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [{ programmes, impactFigures }, galleryPhotos, newsPosts] = await Promise.all([
+    getProgrammesAndImpact(),
+    getGalleryPhotos(),
+    getNewsPosts(),
+  ]);
+  const communityStories = newsPosts.filter((post) => post.category === "Community Stories").slice(0, 3);
+  const latestPosts = newsPosts.slice(0, 3);
+  const galleryPreview = selectGalleryPreview(galleryPhotos);
+
   return (
     <>
       <Hero />
       <WhoWeAre />
-      <Impact />
-      <Programmes />
+      <Impact impactFigures={impactFigures} />
+      <Programmes programmes={programmes} />
       <OurStory />
       <Values />
       {communityStories.length > 0 && (
         <PostsSection eyebrow="Stories of Change" title="Stories from the communities we serve" posts={communityStories} action="Read More Stories" />
       )}
-      <GalleryPreview />
+      {galleryPreview.length > 0 && <GalleryPreview photos={galleryPreview} />}
       <Partnerships />
       {latestPosts.length > 0 && (
         <PostsSection eyebrow="Latest Updates" title="News from Hope Compassion Center" posts={latestPosts} action="View News & Stories" />

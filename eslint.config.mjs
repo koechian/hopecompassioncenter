@@ -3,7 +3,7 @@ import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 const eslintConfig = [
   ...nextCoreWebVitals,
   {
-    ignores: [".next/**", "out/**", "node_modules/**"],
+    ignores: [".next/**", "out/**", "node_modules/**", "studio/**"],
   },
   {
     // Page copy uses plain apostrophes and quotes; React renders them safely.

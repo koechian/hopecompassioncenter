@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { newsCategories, newsPosts } from "@/content/news";
+import { newsCategories } from "@/content/news";
+import { getNewsPosts } from "@/lib/content_repository";
 import ButtonLink from "../components/ButtonLink";
 import NewsCard, { formatPostDate } from "../components/NewsCard";
 import PageHeader from "../components/PageHeader";
@@ -43,7 +44,8 @@ function EmptyState() {
   );
 }
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const newsPosts = await getNewsPosts();
   const featured = newsPosts.find((post) => post.featured) ?? newsPosts[0];
   const remaining = newsPosts.filter((post) => post !== featured);
 

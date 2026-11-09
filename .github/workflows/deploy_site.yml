@@ -1,0 +1,56 @@
+# Builds the static site and uploads it to the cPanel host over FTPS.
+#
+# Runs on every push to main, when Sanity reports published content (a webhook sends the
+# `sanity-content-published` repository dispatch), and on demand from the Actions tab.
+#
+# Repository settings it reads:
+#   variables  SANITY_PROJECT_ID, SANITY_DATASET, DEPLOY_ENABLED ("true" turns on the upload)
+#   secrets    FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (an FTP account whose home is public_html)
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [sanity-content-published]
+  workflow_dispatch:
+
+# One deployment at a time; a newer run waits rather than interrupting an upload.
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn lint
+
+      - run: yarn build
+        env:
+          SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
+          SANITY_DATASET: ${{ vars.SANITY_DATASET }}
+
+      - name: Upload to cPanel
+        if: vars.DEPLOY_ENABLED == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./out/
+          server-dir: ./

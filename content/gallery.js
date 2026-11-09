@@ -1,4 +1,5 @@
 // Gallery categories in display order. Categories without photographs are not shown.
+// studio/schemas/categories.js holds the same list for the Studio.
 export const galleryCategories = [
   "Children & Education",
   "Feeding Programme",
@@ -13,7 +14,7 @@ export const galleryCategories = [
 // Only publish identifiable photographs of children with the appropriate consent.
 export const galleryPhotos = [
   { src: "/photos/hero.jpg", category: "Children & Education", caption: "Children celebrating together at the children's centre" },
-  { src: "/photos/kids_center_1.jpg", category: "Children & Education", caption: "Toddlers playing at the Kids Hub" },
+  { src: "/photos/kids_center_1.jpg", category: "Children & Education", caption: "Toddlers playing at the Kids Hub", onHomePage: true },
   { src: "/photos/kids_center_2.jpg", category: "Children & Education", caption: "Children at play in the Kids Hub" },
   { src: "/photos/kids_happy_3.jpg", category: "Children & Education", caption: "Young children seated together" },
   { src: "/photos/kids_happy_2.jpg", category: "Children & Education", caption: "Children playing outdoors" },
@@ -25,18 +26,18 @@ export const galleryPhotos = [
   { src: "/photos/december_2024_15.jpg", category: "Children & Education", caption: "A volunteer with toddlers at the daycare" },
   { src: "/photos/december_2024_07.jpg", category: "Children & Education", caption: "Visitors inside the children's centre" },
 
-  { src: "/photos/eating.jpg", category: "Feeding Programme", caption: "Children eating together" },
+  { src: "/photos/eating.jpg", category: "Feeding Programme", caption: "Children eating together", onHomePage: true },
   { src: "/photos/kids_daycare.jpg", category: "Feeding Programme", caption: "Young children sharing a meal at the Kids Hub" },
   { src: "/photos/kids_happy_1.jpg", category: "Feeding Programme", caption: "Children sharing a meal" },
 
-  { src: "/photos/women_empowerment.jpg", category: "Women Empowerment", caption: "Members of the women's group in Mathare" },
+  { src: "/photos/women_empowerment.jpg", category: "Women Empowerment", caption: "Members of the women's group in Mathare", onHomePage: true },
   { src: "/photos/women_lit_1.jpg", category: "Women Empowerment", caption: "Women at a group session" },
   { src: "/photos/women_lit_3.jpg", category: "Women Empowerment", caption: "Women's group members gathered together" },
   { src: "/photos/women_lit_2.jpg", category: "Women Empowerment", caption: "A participant at a women's group session" },
   { src: "/photos/women_lit_4.jpg", category: "Women Empowerment", caption: "A women's group gathering" },
   { src: "/photos/women.jpg", category: "Women Empowerment", caption: "Women receiving food support" },
 
-  { src: "/photos/sports_4.jpg", category: "Youth Activities", caption: "The youth team in a huddle" },
+  { src: "/photos/sports_4.jpg", category: "Youth Activities", caption: "The youth team in a huddle", onHomePage: true },
   { src: "/photos/sports_3.jpg", category: "Youth Activities", caption: "Youth football team on the pitch" },
   { src: "/photos/sports_kits.jpg", category: "Youth Activities", caption: "Young people with their new team kits" },
   { src: "/photos/football.webp", category: "Youth Activities", caption: "A football match on a dirt pitch" },
@@ -48,7 +49,7 @@ export const galleryPhotos = [
   { src: "/photos/sports_8.jpg", category: "Youth Activities", caption: "A youth mentor speaking" },
   { src: "/photos/youth-team.jpg", category: "Youth Activities", caption: "Young people gathered outdoors" },
 
-  { src: "/photos/migori.jpg", category: "Support for Elderly Women", caption: "Elderly women in Migori standing in a maize field" },
+  { src: "/photos/migori.jpg", category: "Support for Elderly Women", caption: "Elderly women in Migori standing in a maize field", onHomePage: true },
   { src: "/photos/elderly_widows_2.jpg", category: "Support for Elderly Women", caption: "Women working in the maize field" },
   { src: "/photos/elderly_widows_1.jpg", category: "Support for Elderly Women", caption: "Women sharing a meal" },
   { src: "/photos/elderly_1.jpg", category: "Support for Elderly Women", caption: "Elderly women standing together" },
@@ -69,7 +70,7 @@ export const galleryPhotos = [
   { src: "/photos/december_2024_05.jpg", category: "Support for Elderly Women", caption: "A volunteer speaking with women at an outdoor gathering" },
   { src: "/photos/december_2024_06.jpg", category: "Support for Elderly Women", caption: "Women seated in a forest clearing during an outreach visit" },
 
-  { src: "/photos/december_2024_22.jpg", category: "Community Outreach", caption: "Community members receiving food packages" },
+  { src: "/photos/december_2024_22.jpg", category: "Community Outreach", caption: "Community members receiving food packages", onHomePage: true },
   { src: "/photos/december_2024_10.jpg", category: "Community Outreach", caption: "A mother carrying her baby and a food package" },
   { src: "/photos/december_2024_12.jpg", category: "Community Outreach", caption: "Community members gathered for a distribution" },
   { src: "/photos/december_2024_16.jpg", category: "Community Outreach", caption: "A woman receiving a food package" },

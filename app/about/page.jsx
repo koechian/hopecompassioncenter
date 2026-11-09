@@ -1,5 +1,4 @@
 import { about } from "@/content/about";
-import { futurePriorities } from "@/content/programmes";
 import { site } from "@/content/site";
 import { values } from "@/content/values";
 import CallToAction from "../components/CallToAction";
@@ -7,6 +6,7 @@ import Icon from "../components/Icon";
 import PageHeader from "../components/PageHeader";
 import SectionHeading from "../components/SectionHeading";
 import FuturePriorities from "../components/FuturePriorities";
+import { getProgrammesAndImpact } from "@/lib/content_repository";
 
 export const metadata = {
   title: "About Us",
@@ -56,7 +56,9 @@ function Founder() {
   );
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { futurePriorities } = await getProgrammesAndImpact();
+
   return (
     <>
       <PageHeader title="About Us" tagline={["Who We Are", "Our Values", "Our Story"]} />

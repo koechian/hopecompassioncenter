@@ -103,7 +103,7 @@ export default function GalleryBrowser({ categories, photos }) {
               aria-label={`View larger: ${photo.caption}`}
             >
               <img
-                src={photo.src}
+                src={photo.thumbnailSrc}
                 alt={photo.caption}
                 loading="lazy"
                 className="h-auto w-full transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"

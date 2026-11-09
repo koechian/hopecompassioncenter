@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "@portabletext/react";
 import { LuArrowLeft } from "react-icons/lu";
-import { newsPosts } from "@/content/news";
+import { getNewsPosts } from "@/lib/content_repository";
+import { imageUrl } from "@/lib/sanity_client";
 import { formatPostDate } from "../../components/NewsCard";
 
 export const dynamicParams = false;
@@ -10,22 +12,50 @@ export const dynamicParams = false;
 // slug renders the not-found page; nothing links to it.
 const PLACEHOLDER_SLUG = "no-posts-yet";
 
-export function generateStaticParams() {
-  const slugs = newsPosts.map((post) => post.slug);
+export async function generateStaticParams() {
+  const slugs = (await getNewsPosts()).map((post) => post.slug);
   return (slugs.length > 0 ? slugs : [PLACEHOLDER_SLUG]).map((slug) => ({ slug }));
 }
 
-function findPost(slug) {
-  return newsPosts.find((post) => post.slug === slug);
+async function findPost(slug) {
+  return (await getNewsPosts()).find((post) => post.slug === slug);
 }
 
 export async function generateMetadata({ params }) {
-  const post = findPost((await params).slug);
+  const post = await findPost((await params).slug);
   return post ? { title: post.title, description: post.summary } : {};
 }
 
+// How the rich text written in the Studio is rendered.
+const bodyComponents = {
+  block: {
+    h2: ({ children }) => <h2 className="pt-4 text-3xl font-semibold">{children}</h2>,
+    h3: ({ children }) => <h3 className="pt-2 text-2xl font-semibold">{children}</h3>,
+    blockquote: ({ children }) => <blockquote className="border-l-4 border-gold pl-5 text-xl italic">{children}</blockquote>,
+  },
+  list: {
+    bullet: ({ children }) => <ul className="list-disc space-y-2 pl-6">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal space-y-2 pl-6">{children}</ol>,
+  },
+  marks: {
+    link: ({ children, value }) => (
+      <a href={value?.href} className="font-medium text-rust underline hover:text-rust-deep">
+        {children}
+      </a>
+    ),
+  },
+  types: {
+    bodyImage: ({ value }) => (
+      <figure>
+        <img src={imageUrl(value, 1600)} alt={value.alt} loading="lazy" className="w-full rounded-2xl object-cover" />
+        {value.caption && <figcaption className="mt-2 text-sm text-charcoal/70">{value.caption}</figcaption>}
+      </figure>
+    ),
+  },
+};
+
 export default async function NewsPostPage({ params }) {
-  const post = findPost((await params).slug);
+  const post = await findPost((await params).slug);
   if (!post) notFound();
 
   return (
@@ -45,9 +75,7 @@ export default async function NewsPostPage({ params }) {
       <div className="container-page max-w-3xl py-12 lg:py-16">
         {post.image && <img src={post.image.src} alt={post.image.alt} className="mb-10 w-full rounded-3xl object-cover" />}
         <div className="space-y-5 text-lg text-charcoal/90">
-          {post.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-          ))}
+          <PortableText value={post.body} components={bodyComponents} />
         </div>
       </div>
     </article>

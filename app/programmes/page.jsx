@@ -1,4 +1,4 @@
-import { futurePriorities, programmes } from "@/content/programmes";
+import { getProgrammesAndImpact } from "@/lib/content_repository";
 import CallToAction from "../components/CallToAction";
 import FuturePriorities from "../components/FuturePriorities";
 import PageHeader from "../components/PageHeader";
@@ -38,7 +38,9 @@ function ProgrammeSection({ programme, index }) {
   );
 }
 
-export default function ProgrammesPage() {
+export default async function ProgrammesPage() {
+  const { programmes, futurePriorities } = await getProgrammesAndImpact();
+
   return (
     <>
       <PageHeader

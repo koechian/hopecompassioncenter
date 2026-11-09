@@ -1,6 +1,6 @@
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { contact, enquiryCategories } from "@/content/contact";
-import { site } from "@/content/site";
+import { getSiteSettings } from "@/lib/content_repository";
 import { telephoneHref, whatsappHref } from "@/lib/contact_links";
 import ButtonLink from "../components/ButtonLink";
 import EnquiryForm from "../components/EnquiryForm";
@@ -12,7 +12,8 @@ export const metadata = {
   description: "Contact Hope Compassion Center in Nairobi, Kenya, with a general enquiry, partnership proposal or volunteering question.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const site = await getSiteSettings();
   const details = [
     site.email && { icon: <LuMail className="size-5" aria-hidden="true" />, label: "Email", text: site.email, href: `mailto:${site.email}` },
     site.phone && { icon: <LuPhone className="size-5" aria-hidden="true" />, label: "Telephone", text: site.phone, href: telephoneHref(site.phone) },
