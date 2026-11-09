@@ -84,6 +84,14 @@ temporarily pass `apiHost` and `useProjectHostname: false` to `createClient` (re
   cut-outs in `public/brand/`. The logo's orange-red matches the brief's `#B93819`, so the brief palette
   in `app/globals.css` stands. Vector originals have been requested.
 
+## Renewals
+
+- **2027-11-01**: the fine-grained GitHub token in the Sanity webhook's `Authorization` header expires
+  (owner `koechian`, repository `hopecompassioncenter` only, *Contents: Read and write*). After that,
+  publishing in the Studio no longer starts a build. Create a new token and replace the header in
+  sanity.io/manage (the Manage page does not show the webhook projection; it is set through the API as
+  `rule.projection` = `{"event_type": "sanity-content-published"}`).
+
 ## Status (2026-11-09)
 
 Done and pushed: upgrade and fixes, restructure to the client's brief, phone and WhatsApp, new logo,
@@ -100,9 +108,9 @@ Next steps:
 1. Sanity: invite client staff as Editors (sanity.io/manage, project Members). The GitHub variables
    `SANITY_PROJECT_ID` and `SANITY_DATASET` are no longer needed; the IDs are the code defaults.
 2. Deployment: the FTP account `webadmin@hopecompassioncenter.com` (home `public_html`, the live
-   document root; verified 2026-11-09 over verified TLS) is ready. Rotate its password, add the `FTP_*`
-   secrets, push, run the workflow as a dry run, then set `DEPLOY_ENABLED` and add the Sanity webhook
-   (README, *Build and deploy*). The account's old empty folder `hopecompassioncenter.com/webadmin` can go.
+   document root; verified 2026-11-09 over verified TLS) is ready and the `FTP_*` secrets are set. The
+   Sanity webhook "GitHub Webhook" is set up and a test dispatch started a build. Remaining: push, run
+   the workflow as a dry run, then set `DEPLOY_ENABLED`. The account's old empty folder `hopecompassioncenter.com/webadmin` can go.
    The first upload only adds and replaces files, so the old site's leftovers stay (`pages/`, `index.txt`,
    root images, old `_next/` chunks); delete `pages/` and the other leftovers afterwards. After the first upload,
    delete the old `pages/` folder from `public_html` and check whether PHP runs on the host.
